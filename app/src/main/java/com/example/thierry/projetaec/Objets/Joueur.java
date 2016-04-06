@@ -1,6 +1,6 @@
 package com.example.thierry.projetaec.Objets;
 
-        import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by jonathan on 2016-04-06.
