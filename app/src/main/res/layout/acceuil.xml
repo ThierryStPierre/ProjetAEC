@@ -1,21 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
     <Button
-        android:id="@+id/angry_btn"
+        android:id="@+id/btnPartie"
 
-        android:text="Button"
+        android:text="Partie"
+        android:textStyle="italic"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
 
         android:layout_width="270dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="@drawable/boutton_partie"
-        android:shadowColor="#A8A8A8"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
-        />
 
-</LinearLayout>
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageLogo"
+        android:layout_above="@+id/btnPartie"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="83dp" />
+    <Button
+        android:id="@+id/btnStats"
+
+        android:text="Stats"
+        android:textStyle="italic"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:background="@drawable/boutton_partie"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+
+        android:layout_gravity="center"
+        android:layout_below="@+id/btnPartie"
+        android:layout_alignLeft="@+id/btnPartie"
+        android:layout_alignStart="@+id/btnPartie"
+        android:layout_marginTop="61dp" />
+
+</RelativeLayout>
