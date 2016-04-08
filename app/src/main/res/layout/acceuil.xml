@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@drawable/proto_background2">
+    android:background="@drawable/proto_background5">
     bac
     <Button
         android:id="@+id/btnPartie"
@@ -19,8 +19,9 @@
         android:shadowRadius="5"
 
         android:layout_gravity="center"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="123dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -43,11 +44,9 @@
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
-
-        android:layout_gravity="center"
-        android:layout_below="@+id/btnPartie"
+        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/btnPartie"
         android:layout_alignStart="@+id/btnPartie"
-        android:layout_marginTop="61dp" />
+        android:layout_marginBottom="40dp" />
 
 </RelativeLayout>
