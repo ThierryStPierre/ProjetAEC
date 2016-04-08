@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Objets.selection_joueurs"
+            android:name=".Objets.Selection_Joueurs"
             android:label="@string/title_activity_selection_joueurs"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
