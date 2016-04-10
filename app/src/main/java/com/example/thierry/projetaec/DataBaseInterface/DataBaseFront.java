@@ -4,7 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.apprentissage.tallyhop.dbfrontest.MinimalEquipe;import com.apprentissage.tallyhop.dbfrontest.MinimalJoueur;import com.apprentissage.tallyhop.dbfrontest.MinimalLigue;import org.apache.http.HttpEntity;
+import com.example.thierry.projetaec.Objets.Equipe;
+import com.example.thierry.projetaec.Objets.Joueur;
+import com.example.thierry.projetaec.Objets.Ligue;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -110,8 +113,8 @@ public class DataBaseFront {
         thread.start();
     }
 
-    public List<MinimalJoueur> getListJoueurs(int idEquipe, int idSaison) {
-        ArrayList<MinimalJoueur> liste = null;
+    public List<Joueur> getListJoueurs(int idEquipe, int idSaison) {
+        ArrayList<Joueur> liste = null;
         ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("action", "listeJoueur"));
         pairs.add(new BasicNameValuePair("idEquipe", ""+idEquipe));
@@ -124,11 +127,11 @@ public class DataBaseFront {
             parser =  new JSONParser(ligneResult);
             JSONArray joueurArray = parser.getList("Joueur");
             if(joueurArray != null){
-                liste = new ArrayList<MinimalJoueur>();
+                liste = new ArrayList<Joueur>();
                 for(int index = 0; index < joueurArray.length(); index++){
                     try {
                         JSONObject jsonObject = joueurArray.getJSONObject(index);
-                        MinimalJoueur joueur = new MinimalJoueur(jsonObject.getInt("id"),
+                        Joueur joueur = new Joueur(jsonObject.getInt("id"),
                                                         jsonObject.getString("nom"),
                                                         jsonObject.getString("prenom"));
                         liste.add(joueur);
@@ -142,8 +145,8 @@ public class DataBaseFront {
         return liste;
     }
 
-    public List<MinimalLigue> getListLigues(int idGestionnaire) {
-        ArrayList<MinimalLigue> liste = null;
+    public List<Ligue> getListLigues(int idGestionnaire) {
+        ArrayList<Ligue> liste = null;
         ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("action", "listeLigue"));
         if(idGestionnaire > 0)
@@ -156,15 +159,15 @@ public class DataBaseFront {
         System.out.print("DataBaseFront.getListLigues() ligueArray  = " + ligueArray + "\n\n");
         System.out.flush();
         if(ligueArray != null){
-            liste = new ArrayList<MinimalLigue>();
+            liste = new ArrayList<Ligue>();
             for(int index = 0; index < ligueArray.length(); index++){
                 try {
                     JSONObject jsonObject = ligueArray.getJSONObject(index);
                     System.out.print("DataBaseFront.getListLigues() jsonObject["+index+"] = " + jsonObject + "\n\n");
                     System.out.flush();
-                    MinimalLigue ligue = new MinimalLigue(jsonObject.getInt("id"),
-                                                    jsonObject.getString("nom"),
-                                                    0/*jsonObject.getInt("idOwnder")*/);
+                    Ligue ligue = new Ligue(jsonObject.getInt("id"),
+                                                    jsonObject.getString("nom")/*,
+                                                    jsonObject.getInt("idOwnder")*/);
                     liste.add(ligue);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -174,8 +177,8 @@ public class DataBaseFront {
         return liste;
     }
 
-    public List<MinimalEquipe> getListEquipes(int idLigue) {
-        ArrayList<MinimalEquipe> liste = null;
+    public List<Equipe> getListEquipes(int idLigue) {
+        ArrayList<Equipe> liste = null;
         ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("action", "listeEquipe"));
         pairs.add(new BasicNameValuePair("idLigue", "" + idLigue));
@@ -185,11 +188,12 @@ public class DataBaseFront {
         parser =  new JSONParser(ligneResult);
         JSONArray ligueArray = parser.getList("Equipes");
         if(ligueArray != null){
-            liste = new ArrayList<MinimalEquipe>();
+            liste = new ArrayList<Equipe>();
             for(int index = 0; index < ligueArray.length(); index++){
                 try {
                     JSONObject jsonObject = ligueArray.getJSONObject(index);
-                    MinimalEquipe equipe = new MinimalEquipe(jsonObject.getInt("id"),
+                    Equipe equipe = new Equipe(jsonObject.getInt("id"),
+                                        idLigue,
                                         jsonObject.getString("nom"));
                     liste.add(equipe);
                 } catch (JSONException e) {
@@ -200,8 +204,8 @@ public class DataBaseFront {
         return liste;
     }
 
-    public List<MinimalJoueur> getListGestionnaires() {
-        ArrayList<MinimalJoueur> liste = null;
+    public List<Joueur> getListGestionnaires() {
+        ArrayList<Joueur> liste = null;
         ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("action", "listeGestionaires"));
         parsingComplete = false;
@@ -215,11 +219,11 @@ public class DataBaseFront {
             parser =  new JSONParser(ligneResult);
             JSONArray joueurArray = parser.getList("Gestionnaires");
             if(joueurArray != null){
-                liste = new ArrayList<MinimalJoueur>();
+                liste = new ArrayList<Joueur>();
                 for(int index = 0; index < joueurArray.length(); index++){
                     try {
                         JSONObject jsonObject = joueurArray.getJSONObject(index);
-                        MinimalJoueur joueur = new MinimalJoueur(jsonObject.getInt("id"),
+                        Joueur joueur = new Joueur(jsonObject.getInt("id"),
                                                     jsonObject.getString("nom"),
                                                     jsonObject.getString("prenom"));
                         System.out.print("DataBaseFront.getListEquipes() joueur["+index+"] = " + joueur + "\n\n");
