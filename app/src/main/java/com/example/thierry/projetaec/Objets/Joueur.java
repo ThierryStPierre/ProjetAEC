@@ -7,7 +7,7 @@ import java.sql.Date;
  */
 public class Joueur {
     private int idJoueur;
-    private int idEquipe;
+//    private int idEquipe;
     private String nom;
     private String prenom;
     private Date dateNaissance;
@@ -19,11 +19,15 @@ public class Joueur {
     private boolean pointeur;
     private boolean gestionnaire;
 
-    public Joueur(int idJoueur, int idEquipe, String nom, String prenom, Date dateNaissance,
+    public Joueur(int idJoueur, /*int idEquipe,*/ String nom, String prenom){
+        this(idJoueur, nom, prenom, null, "", "", "", "", false, false, false);
+    }
+
+    public Joueur(int idJoueur, /*int idEquipe,*/ String nom, String prenom, Date dateNaissance,
                   String telephone, String courriel, String nomUsager, String motDePasse,
                   boolean capitaine, boolean pointeur, boolean gestionnaire) {
         this.idJoueur = idJoueur;
-        this.idEquipe = idEquipe;
+//        this.idEquipe = idEquipe;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
@@ -40,7 +44,7 @@ public class Joueur {
     public String toString() {
         return "Joueur{" +
                 "idJoueur=" + idJoueur +
-                ", idEquipe=" + idEquipe +
+//                ", idEquipe=" + idEquipe +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", dateNaissance=" + dateNaissance +
@@ -61,14 +65,14 @@ public class Joueur {
     public void setIdJoueur(int idJoueur) {
         this.idJoueur = idJoueur;
     }
-
+/*
     public int getIdEquipe() {
         return idEquipe;
     }
 
     public void setIdEquipe(int idEquipe) {
         this.idEquipe = idEquipe;
-    }
+    }*/
 
     public String getNom() {
         return nom;
