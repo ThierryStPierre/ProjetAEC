@@ -45,7 +45,7 @@ public class DataBaseFront {
     static SQLiteDatabase db = null;
     protected Cursor cursor; //voir diapositive suivant
 //    public static final String strURL = "http://10.0.2.2/ProjetAEC/connect_ligue.php";
-    public static final String strURL = "http://http://thierrystpierre.ddns.net:81/ProjetAEC/connect_ligue.php";
+    public static final String strURL = "http://thierrystpierre.ddns.net:81/ProjetAEC/connect_ligue.php";
     private List<NameValuePair> paramRequete;
     private JSONParser parser;
     private String ligneResult = null;
