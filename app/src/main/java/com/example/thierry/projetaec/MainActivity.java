@@ -28,7 +28,7 @@ private Button bouttonPartie;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Raaaaeplace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Raaaaedfsdfplace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });*/
