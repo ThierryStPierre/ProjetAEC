@@ -4,8 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.String;import java.lang.System;import java.util.List;
-
 /**
  * Created by thierry on 09/04/16.
  */
