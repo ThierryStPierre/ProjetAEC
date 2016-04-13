@@ -10,7 +10,7 @@ import com.example.thierry.projetaec.R;
 
 import java.util.ArrayList;
 
-public class Selection_Joueursha extends AppCompatActivity {
+public class Selection_Joueurs extends AppCompatActivity {
 
     private ArrayList<Button> btn = new ArrayList<>();
     private int tableBtn[] = {R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9,

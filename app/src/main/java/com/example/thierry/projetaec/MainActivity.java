@@ -2,10 +2,7 @@ package com.example.thierry.projetaec;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +33,7 @@ private Button bouttonPartie;
             @Override
             public void onClick(View view) {
                 Bundle b = new Bundle();
-                Intent i = new Intent(MainActivity.this, ListEquipe.class);
+                Intent i = new Intent(MainActivity.this, Selection_Joueurs.class);
                 startActivity(i);
             }
         });
