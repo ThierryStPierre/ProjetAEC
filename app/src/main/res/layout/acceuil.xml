@@ -8,7 +8,7 @@
     <Button
         android:id="@+id/btnPartie"
 
-        android:text="Partie"
+        android:text="@string/game"
         android:textStyle="italic"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
