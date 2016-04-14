@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -22,14 +23,17 @@ import java.util.List;
 public class ListEquipe extends AppCompatActivity {
     private ListView listViewEquipe;
     private Button btnConfirm;
+    private CheckedTextView checkBox;
 
     private DataBaseFront dbFront;
 
-    private int[] selectedItems;
+    private ArrayList<String> selectedItems;
+    private ArrayList<String> checkedItems;
     private List<Equipe> listEquipe;
     private ListAdapter adapter;
 
-    private static final int ID_LIGUE = 4;
+
+    private static final int ID_LIGUE = 2;
 
 
 
@@ -38,8 +42,13 @@ public class ListEquipe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_equipe);
 
+        selectedItems = new ArrayList<>();
+        checkedItems = new ArrayList<>();
         listEquipe = new ArrayList<>();
-        dbFront = new DataBaseFront(this);
+
+
+
+        dbFront = new DataBaseFront(this);//connection
 
         listViewEquipe = (ListView)findViewById(R.id.listEquipe);
         listViewEquipe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -49,7 +58,31 @@ public class ListEquipe extends AppCompatActivity {
         listViewEquipe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               //Get text of ID
+
+                /*int selectedId = (Integer.parseInt(((TextView)
+                        view.findViewById(R.id.txtIdEquipe)).getText().toString()));*/
+                String selectedId = ((TextView)view.findViewById(R.id.txtIdEquipe)).getText().toString();
+                CheckedTextView check = ((CheckedTextView)view.findViewById(R.id.txtNomEquipe));
+
+                String checkedId = String.valueOf(position);
+
+                if(selectedItems.contains(selectedId)){
+                    selectedItems.remove(selectedId); //un-check
+                    checkedItems.remove(String.valueOf(position));
+
+                }
+                else {
+                    selectedItems.add(selectedId); //check
+                    checkedItems.add(checkedId);
+                    noMoreThan2(selectedItems);
+                   // noMoreThan2(checkedItems);
+                }
+                if(checkedItems.size() > 2){
+                    check.toggle();
+
+                }
+                else
+                check.toggle();
             }
         });
 
@@ -57,22 +90,36 @@ public class ListEquipe extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(ListEquipe.this, returnPositionToUncheck(checkedItems)+"", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public void getListEquipeFromDb(){
-
-        //listEquipe = dbFront.getListEquipes(ID_LIGUE);
+        listEquipe = dbFront.getListEquipes(ID_LIGUE);
+        //listViewEquipe.setAdapter(new CustomAdapterEquipe(this, listEquipe));
         listViewEquipe.setAdapter(new CustomAdapterEquipe(this, dummyList()));
     }
+
     public List<Equipe> dummyList(){
         List<Equipe> dummy = new ArrayList<>();
         dummy.add(new Equipe(1, 1, "dummy team 1"));
         dummy.add(new Equipe(2, 2, "dummy team 2"));
         dummy.add(new Equipe(3, 3, "dummy team 3"));
+        dummy.add(new Equipe(4, 4, "dummy team 4"));
+        dummy.add(new Equipe(5, 5, "dummy team 5"));
+        dummy.add(new Equipe(6, 6, "dummy team 6"));
+        dummy.add(new Equipe(7, 7, "dummy team 7"));
+        dummy.add(new Equipe(8, 8, "dummy team 8"));
+        dummy.add(new Equipe(9, 9, "dummy team 9"));
+        dummy.add(new Equipe(10, 10, "dummy team 10"));
+        dummy.add(new Equipe(11, 11, "dummy team 11"));
+        dummy.add(new Equipe(12, 12, "dummy team 12"));
+        dummy.add(new Equipe(13, 13, "dummy team 13"));
+        dummy.add(new Equipe(14, 14, "dummy team 14"));
+        dummy.add(new Equipe(15, 15, "dummy team 15"));
+        dummy.add(new Equipe(16, 16, "dummy team 16"));
+
         return dummy;
     }
 
@@ -80,4 +127,21 @@ public class ListEquipe extends AppCompatActivity {
         //faire un bundle et envoyé les id
     }
 
+    public void noMoreThan2(ArrayList<String> array){
+        if(array.size() > 2){
+            String temp = array.get(1);
+            array.set(0, temp);
+            String temp2 = array.get(2);
+            array.set(1, temp2);
+            array.remove(2);
+        }
+    }
+    public String returnPositionToUncheck(ArrayList<String> array){
+        int temp = 0;
+        if(array.size() >= 2){
+            temp = array.size() - 3;
+            array.get(temp);
+        }
+        return array.get(temp);
+    }
 }
