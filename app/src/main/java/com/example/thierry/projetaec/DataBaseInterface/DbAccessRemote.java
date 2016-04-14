@@ -104,18 +104,21 @@ public class DbAccessRemote extends DbAccess{
 
         if(ligneResult != null) {
             parser =  new JSONParser(ligneResult);
-            JSONArray joueurArray = parser.getList("Alignement");
-            if(joueurArray != null){
-                liste = new ArrayList<Joueur>();
-                for(int index = 0; index < joueurArray.length(); index++){
-                    try {
-                        JSONObject jsonObject = joueurArray.getJSONObject(index);
-                        Joueur joueur = new Joueur(jsonObject.getInt("id"),
-                                jsonObject.getString("nom"),
-                                jsonObject.getString("prenom"));
-                        liste.add(joueur);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+            String status = parser.getStatus();
+            if(status.equalsIgnoreCase("Success")) {
+                JSONArray joueurArray = parser.getList("Alignement");
+                if (joueurArray != null) {
+                    liste = new ArrayList<Joueur>();
+                    for (int index = 0; index < joueurArray.length(); index++) {
+                        try {
+                            JSONObject jsonObject = joueurArray.getJSONObject(index);
+                            Joueur joueur = new Joueur(jsonObject.getInt("id"),
+                                    jsonObject.getString("nom"),
+                                    jsonObject.getString("prenom"));
+                            liste.add(joueur);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -137,18 +140,21 @@ public class DbAccessRemote extends DbAccess{
         System.out.flush();
         if(ligneResult != null) {
             parser =  new JSONParser(ligneResult);
-            JSONArray joueurArray = parser.getList("Alignement");
-            if(joueurArray != null){
-                liste = new ArrayList<Joueur>();
-                for(int index = 0; index < joueurArray.length(); index++){
-                    try {
-                        JSONObject jsonObject = joueurArray.getJSONObject(index);
-                        Joueur joueur = new Joueur(jsonObject.getInt("id"),
-                                jsonObject.getString("nom"),
-                                jsonObject.getString("prenom"));
-                        liste.add(joueur);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+            String status = parser.getStatus();
+            if(status.equalsIgnoreCase("Success")) {
+                JSONArray joueurArray = parser.getList("Alignement");
+                if (joueurArray != null) {
+                    liste = new ArrayList<Joueur>();
+                    for (int index = 0; index < joueurArray.length(); index++) {
+                        try {
+                            JSONObject jsonObject = joueurArray.getJSONObject(index);
+                            Joueur joueur = new Joueur(jsonObject.getInt("id"),
+                                    jsonObject.getString("nom"),
+                                    jsonObject.getString("prenom"));
+                            liste.add(joueur);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -171,18 +177,21 @@ public class DbAccessRemote extends DbAccess{
         System.out.flush();
         if(ligneResult != null) {
             parser =  new JSONParser(ligneResult);
-            JSONArray joueurArray = parser.getList("Alignement");
-            if(joueurArray != null){
-                liste = new ArrayList<Joueur>();
-                for(int index = 0; index < joueurArray.length(); index++){
-                    try {
-                        JSONObject jsonObject = joueurArray.getJSONObject(index);
-                        Joueur joueur = new Joueur(jsonObject.getInt("id"),
-                                jsonObject.getString("nom"),
-                                jsonObject.getString("prenom"));
-                        liste.add(joueur);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+            String status = parser.getStatus();
+            if(status.equalsIgnoreCase("Success")) {
+                JSONArray joueurArray = parser.getList("Alignement");
+                if (joueurArray != null) {
+                    liste = new ArrayList<Joueur>();
+                    for (int index = 0; index < joueurArray.length(); index++) {
+                        try {
+                            JSONObject jsonObject = joueurArray.getJSONObject(index);
+                            Joueur joueur = new Joueur(jsonObject.getInt("id"),
+                                    jsonObject.getString("nom"),
+                                    jsonObject.getString("prenom"));
+                            liste.add(joueur);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -201,22 +210,25 @@ public class DbAccessRemote extends DbAccess{
         while(parsingComplete == false);
 
         parser =  new JSONParser(ligneResult);
-        JSONArray ligueArray = parser.getList("Ligues");
-        System.out.print("DataBaseFront.getListLigues() ligueArray  = " + ligueArray + "\n\n");
-        System.out.flush();
-        if(ligueArray != null){
-            liste = new ArrayList<Ligue>();
-            for(int index = 0; index < ligueArray.length(); index++){
-                try {
-                    JSONObject jsonObject = ligueArray.getJSONObject(index);
-                    System.out.print("DataBaseFront.getListLigues() jsonObject["+index+"] = " + jsonObject + "\n\n");
-                    System.out.flush();
-                    Ligue ligue = new Ligue(jsonObject.getInt("id"),
-                            jsonObject.getString("nom")/*,
+        String status = parser.getStatus();
+        if(status.equalsIgnoreCase("Success")) {
+            JSONArray ligueArray = parser.getList("Ligues");
+            System.out.print("DataBaseFront.getListLigues() ligueArray  = " + ligueArray + "\n\n");
+            System.out.flush();
+            if (ligueArray != null) {
+                liste = new ArrayList<Ligue>();
+                for (int index = 0; index < ligueArray.length(); index++) {
+                    try {
+                        JSONObject jsonObject = ligueArray.getJSONObject(index);
+                        System.out.print("DataBaseFront.getListLigues() jsonObject[" + index + "] = " + jsonObject + "\n\n");
+                        System.out.flush();
+                        Ligue ligue = new Ligue(jsonObject.getInt("id"),
+                                jsonObject.getString("nom")/*,
                                                     jsonObject.getInt("idOwnder")*/);
-                    liste.add(ligue);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                        liste.add(ligue);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
@@ -235,21 +247,24 @@ public class DbAccessRemote extends DbAccess{
         System.out.flush();
         parser =  new JSONParser(ligneResult);
         JSONArray ligueArray = parser.getList("Equipes");
-        System.out.print("DataBaseFront.getListEquipes() ligueArray  = " + ligueArray + "\n\n");
-        System.out.flush();
-        if(ligueArray != null){
-            liste = new ArrayList<Equipe>();
-            for(int index = 0; index < ligueArray.length(); index++){
-                try {
-                    JSONObject jsonObject = ligueArray.getJSONObject(index);
-                    System.out.print("DataBaseFront.getListEquipes() jsonObject["+index+"] = " + jsonObject + "\n\n");
-                    System.out.flush();
-                    Equipe equipe = new Equipe(jsonObject.getInt("id"),
-                            idLigue,
-                            jsonObject.getString("nom"));
-                    liste.add(equipe);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+        String status = parser.getStatus();
+        if(status.equalsIgnoreCase("Success")) {
+            System.out.print("DataBaseFront.getListEquipes() ligueArray  = " + ligueArray + "\n\n");
+            System.out.flush();
+            if (ligueArray != null) {
+                liste = new ArrayList<Equipe>();
+                for (int index = 0; index < ligueArray.length(); index++) {
+                    try {
+                        JSONObject jsonObject = ligueArray.getJSONObject(index);
+                        System.out.print("DataBaseFront.getListEquipes() jsonObject[" + index + "] = " + jsonObject + "\n\n");
+                        System.out.flush();
+                        Equipe equipe = new Equipe(jsonObject.getInt("id"),
+                                idLigue,
+                                jsonObject.getString("nom"));
+                        liste.add(equipe);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
@@ -268,21 +283,24 @@ public class DbAccessRemote extends DbAccess{
         System.out.flush();
 
         if(ligneResult != null) {
-            parser =  new JSONParser(ligneResult);
-            JSONArray joueurArray = parser.getList("Gestionnaires");
-            if(joueurArray != null){
-                liste = new ArrayList<Joueur>();
-                for(int index = 0; index < joueurArray.length(); index++){
-                    try {
-                        JSONObject jsonObject = joueurArray.getJSONObject(index);
-                        Joueur joueur = new Joueur(jsonObject.getInt("id"),
-                                jsonObject.getString("nom"),
-                                jsonObject.getString("prenom"));
-                        System.out.print("DataBaseFront.getListEquipes() joueur["+index+"] = " + joueur + "\n\n");
-                        System.out.flush();
-                        liste.add(joueur);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+            parser = new JSONParser(ligneResult);
+            String status = parser.getStatus();
+            if (status.equalsIgnoreCase("Success")) {
+                JSONArray joueurArray = parser.getList("Gestionnaires");
+                if (joueurArray != null) {
+                    liste = new ArrayList<Joueur>();
+                    for (int index = 0; index < joueurArray.length(); index++) {
+                        try {
+                            JSONObject jsonObject = joueurArray.getJSONObject(index);
+                            Joueur joueur = new Joueur(jsonObject.getInt("id"),
+                                    jsonObject.getString("nom"),
+                                    jsonObject.getString("prenom"));
+                            System.out.print("DataBaseFront.getListEquipes() joueur[" + index + "] = " + joueur + "\n\n");
+                            System.out.flush();
+                            liste.add(joueur);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
