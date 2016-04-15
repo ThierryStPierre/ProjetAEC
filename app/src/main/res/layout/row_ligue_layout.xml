@@ -5,19 +5,18 @@
     android:orientation="horizontal"
     >
     <TextView
-        android:id="@+id/txtIdEquipe"
+        android:id="@+id/txtIdLigue"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"/>
-    <CheckedTextView
+    <TextView
 
-        android:id="@+id/txtNomEquipe"
+        android:id="@+id/txtNomLigue"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
         android:padding="5dp"
         android:textSize="12pt"
         android:textColor="#000000"

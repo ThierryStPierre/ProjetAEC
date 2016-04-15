@@ -1,5 +1,6 @@
 package com.example.thierry.projetaec;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.example.thierry.projetaec.Adapteurs.CustomAdapterEquipe;
 import com.example.thierry.projetaec.DataBaseInterface.DataBaseFront;
 import com.example.thierry.projetaec.Objets.Equipe;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,11 +34,7 @@ public class ListEquipe extends AppCompatActivity {
     private List<Equipe> listEquipe;
     private ListAdapter adapter;
 
-
-    private static final int ID_LIGUE = 2;
-
-
-
+    private static int id_Ligue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +46,12 @@ public class ListEquipe extends AppCompatActivity {
 
 
 
-        dbFront = new DataBaseFront(this);//connection
+        dbFront = new DataBaseFront(this);//CONNECTION
 
         listViewEquipe = (ListView)findViewById(R.id.listEquipe);
         listViewEquipe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        getListEquipeFromDb();
+        setListEquipeFromDb(getIdLigue());
 
         listViewEquipe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -61,25 +59,28 @@ public class ListEquipe extends AppCompatActivity {
 
                 /*int selectedId = (Integer.parseInt(((TextView)
                         view.findViewById(R.id.txtIdEquipe)).getText().toString()));*/
-                String selectedId = ((TextView)view.findViewById(R.id.txtIdEquipe)).getText().toString();
+
+                String selectedId = ((TextView)view.findViewById(R.id.txtIdEquipe))
+                        .getText().toString();
+
                 CheckedTextView check = ((CheckedTextView)view.findViewById(R.id.txtNomEquipe));
 
                 String checkedId = String.valueOf(position);
 
-                if(selectedItems.contains(selectedId)){
-                    selectedItems.remove(selectedId); //un-check
+                if(selectedItems.contains(selectedId)){  //un-check
+                    selectedItems.remove(selectedId);
                     checkedItems.remove(String.valueOf(position));
 
                 }
-                else {
-                    selectedItems.add(selectedId); //check
+                else { //check
+                    selectedItems.add(selectedId);
                     checkedItems.add(checkedId);
                     noMoreThan2(selectedItems);
                    // noMoreThan2(checkedItems);
+
                 }
                 if(checkedItems.size() > 2){
                     check.toggle();
-
                 }
                 else
                 check.toggle();
@@ -90,15 +91,16 @@ public class ListEquipe extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ListEquipe.this, returnPositionToUncheck(checkedItems)+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListEquipe.this,
+                        returnPositionToUncheck(checkedItems)+"", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void getListEquipeFromDb(){
-        listEquipe = dbFront.getListEquipes(ID_LIGUE);
-        //listViewEquipe.setAdapter(new CustomAdapterEquipe(this, listEquipe));
-        listViewEquipe.setAdapter(new CustomAdapterEquipe(this, dummyList()));
+    public void setListEquipeFromDb(int idLigue){
+        listEquipe = dbFront.getListEquipes(idLigue);
+        listViewEquipe.setAdapter(new CustomAdapterEquipe(this, listEquipe));
+        //listViewEquipe.setAdapter(new CustomAdapterEquipe(this, dummyList()));
     }
 
     public List<Equipe> dummyList(){
@@ -123,7 +125,13 @@ public class ListEquipe extends AppCompatActivity {
         return dummy;
     }
 
-    public void sendId(){
+    public int getIdLigue(){
+        Intent i = new Intent();
+        int idLigue = i.getIntExtra("ID_LIGUE",0);
+        return idLigue;
+    }
+
+    public void sendId(int id){
         //faire un bundle et envoyé les id
     }
 

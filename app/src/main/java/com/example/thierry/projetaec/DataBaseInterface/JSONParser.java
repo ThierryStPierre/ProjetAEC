@@ -25,6 +25,7 @@ public class JSONParser {
             return reader.getString("Status");
             } catch (JSONException e) {
                 e.printStackTrace();
+                return null;
             }
         else
             return null;

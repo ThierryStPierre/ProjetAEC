@@ -28,7 +28,7 @@ import java.util.List;
  * Created by thierry on 12/04/16.
  */
 public class DbAccessRemote extends DbAccess{
-    public static final String strURL = "http://thierrystpierre.ddns.net:81/ProjetAEC/connect_ligue.php";
+    public static final String strURL = "http://thierrystpierre.ddns.net:81/ProjetAEC/limuxReader.php";
     private List<NameValuePair> paramRequete;
     private JSONParser parser;
     private String ligneResult = null;
