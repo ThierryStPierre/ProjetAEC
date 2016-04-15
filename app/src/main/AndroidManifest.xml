@@ -30,7 +30,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.thierry.projetaec.MainActivity" />
         </activity>
-        <activity android:name=".ListEquipe"></activity>
+        <activity android:name=".ListEquipe" />
+        <activity android:name=".ListeLigue"></activity>
     </application>
 
 </manifest>

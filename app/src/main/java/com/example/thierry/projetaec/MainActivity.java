@@ -33,7 +33,7 @@ private Button bouttonPartie;
             @Override
             public void onClick(View view) {
                 Bundle b = new Bundle();
-                Intent i = new Intent(MainActivity.this, ListEquipe.class);
+                Intent i = new Intent(MainActivity.this, ListeLigue.class);
                 startActivity(i);
             }
         });
