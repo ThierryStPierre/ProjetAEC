@@ -5,20 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.thierry.projetaec.Adapteurs.CustomAdapterEquipe;
 import com.example.thierry.projetaec.DataBaseInterface.DataBaseFront;
+import com.example.thierry.projetaec.Interfaces.Team1VsTeam2;
 import com.example.thierry.projetaec.Objets.Equipe;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,8 +88,11 @@ public class ListEquipe extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ListEquipe.this,
-                        returnPositionToUncheck(checkedItems)+"", Toast.LENGTH_SHORT).show();
+                Bundle b = new Bundle();
+                Intent i = new Intent(ListEquipe.this, Team1VsTeam2.class);
+                startActivity(i);
+
+                //Toast.makeText(ListEquipe.this, returnPositionToUncheck(checkedItems)+"", Toast.LENGTH_SHORT).show();
             }
         });
     }

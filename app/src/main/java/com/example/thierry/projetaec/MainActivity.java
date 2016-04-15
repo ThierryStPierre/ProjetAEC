@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
-import com.example.thierry.projetaec.Objets.Selection_Joueurs;
 
 public class MainActivity extends AppCompatActivity {
 // Main Activity  -- ceci est un commentaire pour valider l'échange GitHub 
