@@ -1,10 +1,12 @@
-package com.example.thierry.projetaec.Objets;
+package com.example.thierry.projetaec.Interfaces;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import com.example.thierry.projetaec.R;
 
@@ -17,20 +19,28 @@ public class Selection_Joueurs extends AppCompatActivity {
             R.id.btn10, R.id.btn11, R.id.btn12, R.id.btn13, R.id.btn14, R.id.btn15, R.id.btn16, R.id.btn17, R.id.btn18, R.id.btn19,
             R.id.btn20, R.id.btn21, R.id.btn22, R.id.btn23, R.id.btn24, R.id.btn25, R.id.btn26, R.id.btn27, R.id.btn28, R.id.btn29,
             R.id.btn30, R.id.btn31, R.id.btn32, R.id.btn33, R.id.btn34, R.id.btn35, R.id.btn36};
+    private Button btnSave;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection_joueurs);
         int i = 2;
+        /*btnSave = (Button) findViewById(R.id.btnsave);
         for (int j = 0; j < i; j ++){
             btn.add((Button)findViewById(tableBtn[j]));
             btn.get(j).setVisibility(View.VISIBLE);
             btn.get(j).setText(("4"));
-        }
+        }*/
     }
     public void onClick(View v) {
         CheckBox checkBox = (CheckBox)v;
-        if(checkBox.isChecked()) {
+        if(checkBox == btnSave){
+            Bundle b = new Bundle();
+            Intent i = new Intent(Selection_Joueurs.this, Team1VsTeam2.class);
+            Toast.makeText(Selection_Joueurs.this, "Sauvegarde terminé", Toast.LENGTH_SHORT).show();
+            startActivity(i);
+        }
+        else if(checkBox.isChecked()) {
             v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur_selectionne));
         }
         else

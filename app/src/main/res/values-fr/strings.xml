@@ -8,4 +8,6 @@
     <string name="login">Connecter</string>
     <string name="cancel">Annuler</string>
     <string name="game">Partie</string>
+    <string name="selectall">Tout / Rien</string>
+    <string name="save">Sauvegarder</string>
 </resources>

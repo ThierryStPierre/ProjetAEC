@@ -28,6 +28,7 @@ public class JSONParser {
             }
         else
             return null;
+        return null;
     }
 
     public JSONArray getList(String str){

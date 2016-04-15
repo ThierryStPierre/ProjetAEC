@@ -8,4 +8,6 @@
     <string name="login">Login</string>
     <string name="cancel">Cancel</string>
     <string name="game">Game</string>
+    <string name="selectall">All / None</string>
+    <string name="save">Save</string>
 </resources>

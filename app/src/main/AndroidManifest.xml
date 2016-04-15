@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Objets.Selection_Joueurs"
+            android:name=".Interfaces.Selection_Joueurs"
             android:label="@string/title_activity_selection_joueurs"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -30,7 +30,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.thierry.projetaec.MainActivity" />
         </activity>
-        <activity android:name=".ListEquipe"></activity>
+        <activity android:name=".ListEquipe" />
+        <activity
+            android:name=".Interfaces.Team1VsTeam2"
+            android:label="@string/title_activity_main2"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.thierry.projetaec.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

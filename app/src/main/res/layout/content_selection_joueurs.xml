@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/proto_background5"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Objets.Selection_Joueurs"
+    tools:context=".Interfaces.Selection_Joueurs"
     tools:showIn="@layout/activity_selection_joueurs">
 
 
@@ -36,14 +36,14 @@
                     android:textColor="#FFFFFF"
                     android:button="@android:color/transparent"
                     android:gravity="center"
-                    android:visibility="gone"
+
                     android:textSize="30sp"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:text="1"
                     android:layout_weight="1"
                     android:layout_margin="20dp"
-                    android:onClick="onClick"
+
                     android:background="@drawable/boutton_joueur"
                     />
 
@@ -609,6 +609,41 @@
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/btncheckall"
+                    android:textColor="#FFFFFF"
+                    android:button="@android:color/transparent"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:layout_width="120dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:text="@string/selectall"
+                    android:layout_margin="10dp"
+                    android:onClick="onClick"
+                    android:background="@drawable/boutton_partie"
+                    />
+
+                <CheckBox
+                    android:id="@+id/btnsave"
+                    android:textColor="#FFFFFF"
+                    android:button="@android:color/transparent"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:layout_width="120dp"
+                    android:layout_height="80dp"
+                    android:text="@string/save"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/boutton_partie"
+                    />
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

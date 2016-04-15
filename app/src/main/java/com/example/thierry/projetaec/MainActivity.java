@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
-import com.example.thierry.projetaec.Objets.Selection_Joueurs;
+import com.example.thierry.projetaec.Interfaces.Team1VsTeam2;
 
 public class MainActivity extends AppCompatActivity {
 // Main Activity  -- ceci est un commentaire pour valider l'échange GitHub 
@@ -33,7 +33,7 @@ private Button bouttonPartie;
             @Override
             public void onClick(View view) {
                 Bundle b = new Bundle();
-                Intent i = new Intent(MainActivity.this, ListEquipe.class);
+                Intent i = new Intent(MainActivity.this, Team1VsTeam2.class);
                 startActivity(i);
             }
         });
