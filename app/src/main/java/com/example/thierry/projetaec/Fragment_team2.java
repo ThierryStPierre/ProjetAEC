@@ -1,5 +1,6 @@
 package com.example.thierry.projetaec;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
+
+import com.example.thierry.projetaec.Interfaces.Team1VsTeam2;
 
 import java.util.ArrayList;
 
@@ -31,13 +34,14 @@ View view;
             int i = 20;
         chkb =  (CheckBox) view.findViewById(R.id.btn1);
             btnSave = (Button) view.findViewById(R.id.btnsave);
-            //Snackbar.make(view, "Ca va?", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-            for (int j = 0; j < i; j ++){
-            btn.add((Button)view.findViewById(tableBtn[j]));
-            btn.get(j).setVisibility(View.VISIBLE);
-            btn.get(j).setText(("2"));
-            btn.get(j).setBackgroundColor(0xFF00FF00);
             btnSave.setOnClickListener(this);
+            //Snackbar.make(view, "Ca va?", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            for (int j = 0; j < i; j++) {
+                btn.add((Button)view.findViewById(tableBtn[j]));
+                btn.get(j).setVisibility(View.VISIBLE);
+                btn.get(j).setText(("2"));
+                btn.get(j).setBackgroundColor(0xFF00FF00);
+                btn.get(j).setOnClickListener(this);
         }
             return view;
         }
@@ -45,13 +49,17 @@ View view;
     @Override
     public void onClick(View v) {
         CheckBox checkbox = (CheckBox)v;
-if(checkbox.isChecked()){
-    v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur_selectionne));
-    }
-    else
+        if(checkbox == btnSave){
+            /*Bundle b = new Bundle();
+            Intent i = new Intent(Selection_Joueurs.this, Team1VsTeam2.class);
+            Toast.makeText(Selection_Joueurs.this, "Sauvegarde terminé", Toast.LENGTH_SHORT).show();
+            startActivity(i);*/
+        }
+        else if(checkbox.isChecked()){
+            v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur_selectionne));
+        }
+        else
             v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur));
 
-    Snackbar.make(view, "toooooown action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
     }
 }

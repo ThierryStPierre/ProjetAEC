@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 import java.util.ArrayList;
 
@@ -19,26 +20,57 @@ public class Fragment_team extends Fragment implements View.OnClickListener{
             R.id.btn10, R.id.btn11, R.id.btn12, R.id.btn13, R.id.btn14, R.id.btn15, R.id.btn16, R.id.btn17, R.id.btn18, R.id.btn19,
             R.id.btn20, R.id.btn21, R.id.btn22, R.id.btn23, R.id.btn24, R.id.btn25, R.id.btn26, R.id.btn27, R.id.btn28, R.id.btn29,
             R.id.btn30, R.id.btn31, R.id.btn32, R.id.btn33, R.id.btn34, R.id.btn35, R.id.btn36};
-    public Button btnSave;
+    private Button btnSave;
+    private Button btnAllNone;
+    private int howManyTeam;
+    private boolean allSelect = false;
 View view;
         @Override
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             view =  inflater.inflate(R.layout.content_selection_joueurs, container, false);
-            int i = 2;
-        btnSave = (Button) view.findViewById(R.id.btnsave);
-        for (int j = 0; j < i; j ++){
-            btn.add((Button)view.findViewById(tableBtn[j]));
-            btn.get(j).setVisibility(View.VISIBLE);
-            btn.get(j).setText(("4"));
+            howManyTeam = 2;
+            btnSave = (Button) view.findViewById(R.id.btnsave);
+            btnSave.setOnClickListener(this);
+            btnAllNone = (Button) view.findViewById(R.id.btncheckall);
+            btnAllNone.setOnClickListener(this);
+
+            for (int j = 0; j < howManyTeam; j ++){
+                btn.add((Button)view.findViewById(tableBtn[j]));
+                btn.get(j).setVisibility(View.VISIBLE);
+                btn.get(j).setText(("4"));
+                btn.get(j).setOnClickListener(this);
         }
             return view;
         }
 
     @Override
     public void onClick(View v) {
+        CheckBox checkbox = (CheckBox)v;
+        if(checkbox == btnSave){
+            /*Bundle b = new Bundle();
+            Intent i = new Intent(Selection_Joueurs.this, Team1VsTeam2.class);
+            Toast.makeText(Selection_Joueurs.this, "Sauvegarde terminé", Toast.LENGTH_SHORT).show();
+            startActivity(i);*/
+        }
+        else if(checkbox == btnAllNone){
+            if (allSelect == false)
+            for (int j = 0; j < howManyTeam; j ++){
+                btn.get(j).setBackground(getResources().getDrawable(R.drawable.boutton_joueur_selectionne));
+                allSelect = true;
+            }
+            else
+                for (int j = 0; j < howManyTeam; j ++) {
+                    btn.get(j).setBackground(getResources().getDrawable(R.drawable.boutton_joueur));
+                    allSelect = false;
+                }
+        }
+        else if(checkbox.isChecked()){
+            v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur_selectionne));
+        }
+        else
+            v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur));
 
-        Snackbar.make(view, "toooooown action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
     }
+
 }
