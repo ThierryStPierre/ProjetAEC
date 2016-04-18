@@ -3,6 +3,7 @@ package com.example.thierry.projetaec;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.CheckedTextView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.thierry.projetaec.Adapteurs.CustomAdapterEquipe;
 import com.example.thierry.projetaec.DataBaseInterface.DataBaseFront;
@@ -57,30 +59,28 @@ public class ListEquipe extends AppCompatActivity {
                 /*int selectedId = (Integer.parseInt(((TextView)
                         view.findViewById(R.id.txtIdEquipe)).getText().toString()));*/
 
-                String selectedId = ((TextView)view.findViewById(R.id.txtIdEquipe))
+                String selectedId = ((TextView) view.findViewById(R.id.txtIdEquipe))
                         .getText().toString();
 
-                CheckedTextView check = ((CheckedTextView)view.findViewById(R.id.txtNomEquipe));
+                CheckedTextView check = ((CheckedTextView) view.findViewById(R.id.txtNomEquipe));
 
                 String checkedId = String.valueOf(position);
 
-                if(selectedItems.contains(selectedId)){  //un-check
+                if (selectedItems.contains(selectedId)) {  //un-check
                     selectedItems.remove(selectedId);
                     checkedItems.remove(String.valueOf(position));
+                    check.toggle();
 
-                }
-                else { //check
+                } else if (checkedItems.size() < 2) { //check
                     selectedItems.add(selectedId);
                     checkedItems.add(checkedId);
                     noMoreThan2(selectedItems);
-                   // noMoreThan2(checkedItems);
-
-                }
-                if(checkedItems.size() > 2){
+                    // noMoreThan2(checkedItems);
                     check.toggle();
+                    
+                } else if (checkedItems.size() > 2) {
+                   // Toast.makeText(ListEquipe.this, "Deux équipes par partie!"+selectedItems, Toast.LENGTH_SHORT).show();
                 }
-                else
-                check.toggle();
             }
         });
 
@@ -90,9 +90,10 @@ public class ListEquipe extends AppCompatActivity {
             public void onClick(View v) {
                 Bundle b = new Bundle();
                 Intent i = new Intent(ListEquipe.this, Team1VsTeam2.class);
+                i.putExtra("ID_EQUIPE", selectedItems);
                 startActivity(i);
 
-                //Toast.makeText(ListEquipe.this, returnPositionToUncheck(checkedItems)+"", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ListEquipe.this, selectedItems + "", Toast.LENGTH_SHORT).show();
             }
         });
     }

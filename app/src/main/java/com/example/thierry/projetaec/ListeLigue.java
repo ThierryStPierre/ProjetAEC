@@ -48,7 +48,7 @@ public class ListeLigue extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedId = Integer.parseInt(
                         ((TextView) view.findViewById(R.id.txtIdLigue)).getText().toString());
-                Toast.makeText(ListeLigue.this,selectedId+ "", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ListeLigue.this,selectedId+ "", Toast.LENGTH_SHORT).show();
                 sendId(selectedId);
             }
         });
