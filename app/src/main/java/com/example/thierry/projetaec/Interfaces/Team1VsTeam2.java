@@ -3,18 +3,18 @@ package com.example.thierry.projetaec.Interfaces;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.thierry.projetaec.Fragment_team;
 import com.example.thierry.projetaec.Fragment_team2;
 import com.example.thierry.projetaec.R;
 
-public class Team1VsTeam2 extends FragmentActivity {
+public class Team1VsTeam2 extends AppCompatActivity {
 
     /**
      * Created by daniel on 16-04-15.
@@ -34,6 +34,7 @@ public class Team1VsTeam2 extends FragmentActivity {
        }
 
     @Override
+
     public void onBackPressed() {
         if (mPager.getCurrentItem() == 0) {
             super.onBackPressed();
