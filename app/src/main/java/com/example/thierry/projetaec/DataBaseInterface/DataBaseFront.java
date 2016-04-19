@@ -3,6 +3,7 @@ package com.example.thierry.projetaec.DataBaseInterface;
 import android.content.Context;
 import android.net.ConnectivityManager;
 
+import com.example.thierry.projetaec.Objets.Competence;
 import com.example.thierry.projetaec.Objets.Equipe;
 import com.example.thierry.projetaec.Objets.Joueur;
 import com.example.thierry.projetaec.Objets.Ligue;
@@ -110,4 +111,15 @@ public class DataBaseFront extends DbAccess {
     public List<Joueur> getListGestionnaires() {
         return dba.getListGestionnaires();
     }
+
+    @Override
+    public List<Competence> validateLogin(String user, String pass) {
+        return null;
+    }
+
+    @Override
+    public List<Ligue> getListAccreditedLigues(int idMarqueur){
+        return dba.getListAccreditedLigues(idMarqueur);
+    }
+
 }
