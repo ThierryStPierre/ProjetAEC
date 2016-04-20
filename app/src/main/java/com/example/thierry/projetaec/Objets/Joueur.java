@@ -13,19 +13,14 @@ public class Joueur {
     private Date dateNaissance;
     private String telephone;
     private String courriel;
-    private String nomUsager;
-    private String motDePasse;
-    private boolean capitaine;
-    private boolean pointeur;
-    private boolean gestionnaire;
+    private int numeroChandail;
 
-    public Joueur(int idJoueur, /*int idEquipe,*/ String nom, String prenom){
-        this(idJoueur, nom, prenom, null, "", "", "", "", false, false, false);
+    public Joueur(int idJoueur, /*int idEquipe,*/ String nom, String prenom, int numeroChandail){
+        this(idJoueur, nom, prenom, null, "", "", numeroChandail);
     }
 
     public Joueur(int idJoueur, /*int idEquipe,*/ String nom, String prenom, Date dateNaissance,
-                  String telephone, String courriel, String nomUsager, String motDePasse,
-                  boolean capitaine, boolean pointeur, boolean gestionnaire) {
+                  String telephone, String courriel, int numeroChandail) {
         this.idJoueur = idJoueur;
 //        this.idEquipe = idEquipe;
         this.nom = nom;
@@ -33,11 +28,7 @@ public class Joueur {
         this.dateNaissance = dateNaissance;
         this.telephone = telephone;
         this.courriel = courriel;
-        this.nomUsager = nomUsager;
-        this.motDePasse = motDePasse;
-        this.capitaine = capitaine;
-        this.pointeur = pointeur;
-        this.gestionnaire = gestionnaire;
+        this.numeroChandail = numeroChandail;
     }
 
     @Override
@@ -50,11 +41,6 @@ public class Joueur {
                 ", dateNaissance=" + dateNaissance +
                 ", telephone='" + telephone + '\'' +
                 ", courriel='" + courriel + '\'' +
-                ", nomUsager='" + nomUsager + '\'' +
-                ", motDePasse='" + motDePasse + '\'' +
-                ", capitaine=" + capitaine +
-                ", pointeur=" + pointeur +
-                ", gestionnaire=" + gestionnaire +
                 '}';
     }
 
@@ -114,43 +100,11 @@ public class Joueur {
         this.courriel = courriel;
     }
 
-    public String getNomUsager() {
-        return nomUsager;
+    public int getNumeroChandail() {
+        return numeroChandail;
     }
 
-    public void setNomUsager(String nomUsager) {
-        this.nomUsager = nomUsager;
-    }
-
-    public String getMotDePasse() {
-        return motDePasse;
-    }
-
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
-    }
-
-    public boolean isCapitaine() {
-        return capitaine;
-    }
-
-    public void setCapitaine(boolean capitaine) {
-        this.capitaine = capitaine;
-    }
-
-    public boolean isPointeur() {
-        return pointeur;
-    }
-
-    public void setPointeur(boolean pointeur) {
-        this.pointeur = pointeur;
-    }
-
-    public boolean isGestionnaire() {
-        return gestionnaire;
-    }
-
-    public void setGestionnaire(boolean gestionnaire) {
-        this.gestionnaire = gestionnaire;
+    public void setNumeroChandail(int numeroChandail) {
+        this.numeroChandail = numeroChandail;
     }
 }

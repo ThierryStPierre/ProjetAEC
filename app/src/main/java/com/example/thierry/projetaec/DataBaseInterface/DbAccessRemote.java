@@ -2,6 +2,7 @@ package com.example.thierry.projetaec.DataBaseInterface;
 
 import android.content.Context;
 
+import com.example.thierry.projetaec.Objets.Competence;
 import com.example.thierry.projetaec.Objets.Equipe;
 import com.example.thierry.projetaec.Objets.Joueur;
 import com.example.thierry.projetaec.Objets.Ligue;
@@ -28,7 +29,8 @@ import java.util.List;
  * Created by thierry on 12/04/16.
  */
 public class DbAccessRemote extends DbAccess{
-    public static final String strURL = "http://thierrystpierre.ddns.net:81/ProjetAEC/limuxReader.php";
+    public static final String strURLRd = "http://thierrystpierre.ddns.net:81/ProjetAEC/limuxReader.php";
+    public static final String strURLWt = "http://thierrystpierre.ddns.net:81/ProjetAEC/limuxWriter.php";
     private List<NameValuePair> paramRequete;
     private JSONParser parser;
     private String ligneResult = null;
@@ -48,7 +50,7 @@ public class DbAccessRemote extends DbAccess{
             public void run() {
                 try {
                     HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost(strURL);
+                    HttpPost httppost = new HttpPost(strURLRd);
                     httppost.setEntity(new UrlEncodedFormEntity(paramRequete));
                     HttpResponse response = httpclient.execute(httppost);
                     HttpEntity entity2 = response.getEntity();
@@ -75,7 +77,7 @@ public class DbAccessRemote extends DbAccess{
             public void run() {
                 try {
                     HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost(strURL);
+                    HttpPost httppost = new HttpPost(strURLRd);
                     httppost.setEntity(new UrlEncodedFormEntity(paramRequete));
                     HttpResponse response = httpclient.execute(httppost);
                     parsingComplete = true;
@@ -99,9 +101,6 @@ public class DbAccessRemote extends DbAccess{
         sendRequest(pairs);
         while(parsingComplete == false);
 
-        System.out.print("DataBaseFront.getListJoueurs() ligneResult = " + ligneResult + "\n\n");
-        System.out.flush();
-
         if(ligneResult != null) {
             parser =  new JSONParser(ligneResult);
             String status = parser.getStatus();
@@ -114,7 +113,8 @@ public class DbAccessRemote extends DbAccess{
                             JSONObject jsonObject = joueurArray.getJSONObject(index);
                             Joueur joueur = new Joueur(jsonObject.getInt("id"),
                                     jsonObject.getString("nom"),
-                                    jsonObject.getString("prenom"));
+                                    jsonObject.getString("prenom"),
+                                    jsonObject.getInt("numeroChandail"));
                             liste.add(joueur);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -131,13 +131,11 @@ public class DbAccessRemote extends DbAccess{
         ArrayList<Joueur> liste = null;
         ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("action", "listeJoueurLigue"));
-        pairs.add(new BasicNameValuePair("idLigue", ""+idLigue));
+        pairs.add(new BasicNameValuePair("idLigue", "" + idLigue));
         parsingComplete = false;
         sendRequest(pairs);
         while(parsingComplete == false);
 
-        System.out.print("DataBaseFront.getListJoueursParLigue() ligneResult = " + ligneResult + "\n\n");
-        System.out.flush();
         if(ligneResult != null) {
             parser =  new JSONParser(ligneResult);
             String status = parser.getStatus();
@@ -150,7 +148,8 @@ public class DbAccessRemote extends DbAccess{
                             JSONObject jsonObject = joueurArray.getJSONObject(index);
                             Joueur joueur = new Joueur(jsonObject.getInt("id"),
                                     jsonObject.getString("nom"),
-                                    jsonObject.getString("prenom"));
+                                    jsonObject.getString("prenom"),
+                                    jsonObject.getInt("numeroChandail"));
                             liste.add(joueur);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -168,13 +167,11 @@ public class DbAccessRemote extends DbAccess{
         ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("action", "listeJoueur"));
         pairs.add(new BasicNameValuePair("idEquipe", ""+idEquipe));
-        pairs.add(new BasicNameValuePair("idSaison", ""+idSaison));
+        pairs.add(new BasicNameValuePair("idSaison", "" + idSaison));
         parsingComplete = false;
         sendRequest(pairs);
         while(parsingComplete == false);
 
-        System.out.print("DataBaseFront.getListJoueursParEquipe() ligneResult = " + ligneResult + "\n\n");
-        System.out.flush();
         if(ligneResult != null) {
             parser =  new JSONParser(ligneResult);
             String status = parser.getStatus();
@@ -187,7 +184,8 @@ public class DbAccessRemote extends DbAccess{
                             JSONObject jsonObject = joueurArray.getJSONObject(index);
                             Joueur joueur = new Joueur(jsonObject.getInt("id"),
                                     jsonObject.getString("nom"),
-                                    jsonObject.getString("prenom"));
+                                    jsonObject.getString("prenom"),
+                                    jsonObject.getInt("numeroChandail"));
                             liste.add(joueur);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -213,15 +211,11 @@ public class DbAccessRemote extends DbAccess{
         String status = parser.getStatus();
         if(status.equalsIgnoreCase("Success")) {
             JSONArray ligueArray = parser.getList("Ligues");
-            System.out.print("DataBaseFront.getListLigues() ligueArray  = " + ligueArray + "\n\n");
-            System.out.flush();
             if (ligueArray != null) {
                 liste = new ArrayList<Ligue>();
                 for (int index = 0; index < ligueArray.length(); index++) {
                     try {
                         JSONObject jsonObject = ligueArray.getJSONObject(index);
-                        System.out.print("DataBaseFront.getListLigues() jsonObject[" + index + "] = " + jsonObject + "\n\n");
-                        System.out.flush();
                         Ligue ligue = new Ligue(jsonObject.getInt("id"),
                                 jsonObject.getString("nom")/*,
                                                     jsonObject.getInt("idOwnder")*/);
@@ -243,8 +237,6 @@ public class DbAccessRemote extends DbAccess{
         sendRequest(pairs);
         while(parsingComplete == false);
 
-        System.out.print("DataBaseFront.getListEquipes() ligneResult  = " + ligneResult + "\n\n");
-        System.out.flush();
         parser =  new JSONParser(ligneResult);
         JSONArray ligueArray = parser.getList("Equipes");
         String status = parser.getStatus();
@@ -256,8 +248,6 @@ public class DbAccessRemote extends DbAccess{
                 for (int index = 0; index < ligueArray.length(); index++) {
                     try {
                         JSONObject jsonObject = ligueArray.getJSONObject(index);
-                        System.out.print("DataBaseFront.getListEquipes() jsonObject[" + index + "] = " + jsonObject + "\n\n");
-                        System.out.flush();
                         Equipe equipe = new Equipe(jsonObject.getInt("id"),
                                 idLigue,
                                 jsonObject.getString("nom"));
@@ -274,13 +264,10 @@ public class DbAccessRemote extends DbAccess{
     public List<Joueur> getListGestionnaires() {
         ArrayList<Joueur> liste = null;
         ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
-        pairs.add(new BasicNameValuePair("action", "listeGestionaires"));
+        pairs.add(new BasicNameValuePair("action", "listeGestionnaires"));
         parsingComplete = false;
         sendRequest(pairs);
         while(parsingComplete == false);
-
-        System.out.print("DataBaseFront.getListEquipes() ligneResult = " + ligneResult + "\n\n");
-        System.out.flush();
 
         if(ligneResult != null) {
             parser = new JSONParser(ligneResult);
@@ -294,9 +281,7 @@ public class DbAccessRemote extends DbAccess{
                             JSONObject jsonObject = joueurArray.getJSONObject(index);
                             Joueur joueur = new Joueur(jsonObject.getInt("id"),
                                     jsonObject.getString("nom"),
-                                    jsonObject.getString("prenom"));
-                            System.out.print("DataBaseFront.getListEquipes() joueur[" + index + "] = " + joueur + "\n\n");
-                            System.out.flush();
+                                    jsonObject.getString("prenom"), 0);
                             liste.add(joueur);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -308,4 +293,89 @@ public class DbAccessRemote extends DbAccess{
 
         return liste;
     }
+
+    public List<Ligue> getListAccreditedLigues(int idMarqueur){
+        ArrayList<Ligue> liste = null;
+        ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("action", "listeLigueParMarqueur"));
+        pairs.add(new BasicNameValuePair("idMarqueur", ""+idMarqueur));
+        sendRequest(pairs);
+        while(parsingComplete == false);
+
+        parser =  new JSONParser(ligneResult);
+        String status = parser.getStatus();
+        if(status.equalsIgnoreCase("Success")) {
+            JSONArray ligueArray = parser.getList("Ligues");
+            if (ligueArray != null) {
+                liste = new ArrayList<Ligue>();
+                for (int index = 0; index < ligueArray.length(); index++) {
+                    try {
+                        JSONObject jsonObject = ligueArray.getJSONObject(index);
+                        Ligue ligue = new Ligue(jsonObject.getInt("id"),
+                                jsonObject.getString("nom")/*,
+                                                    jsonObject.getInt("idOwnder")*/);
+                        liste.add(ligue);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        return liste;
+    }
+
+    public List<Competence> validateLogin(String user, String pass){
+        ArrayList<Competence> liste = null;
+        ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("action", "listeLigueParMarqueur"));
+        pairs.add(new BasicNameValuePair("userName", user));
+        pairs.add(new BasicNameValuePair("passWord", pass));
+        sendRequest(pairs);
+        while(parsingComplete == false);
+
+        parser =  new JSONParser(ligneResult);
+        String status = parser.getStatus();
+        if(status.equalsIgnoreCase("Success")) {
+            JSONArray ligueArray = parser.getList("Ligues");
+            if (ligueArray != null) {
+                liste = new ArrayList<Competence>();
+                for (int index = 0; index < ligueArray.length(); index++) {
+                    try {
+                        JSONObject jsonObject = ligueArray.getJSONObject(index);
+                        String comp = jsonObject.getString("competenceValue");
+                        String sousLigue = jsonObject.getString("sous-ligue");
+                        String equipe = jsonObject.getString("equipe");
+                        int idLigue=jsonObject.getInt("ligue");
+                        int idSousLigue=-1;
+                        int idEquipe = -1;
+                        Competence.competenceType typeComp = Competence.competenceType.NO_COMPETENCE;
+                        switch(comp){
+                            case "Gestionnaire":
+                                typeComp=Competence.competenceType.GESTIONNAIRE;
+                                break;
+                            case "Capitaine":
+                                typeComp=Competence.competenceType.CAPITAINE;
+                                break;
+                            case "Marqueur":
+                                typeComp=Competence.competenceType.MARQUEUR;
+                                break;
+                        }
+                        if(equipe != "")
+                            idEquipe = Integer.parseInt(equipe);
+                        if(sousLigue != "")
+                            idSousLigue = Integer.parseInt(sousLigue);
+                        Competence competence = new Competence(jsonObject.getInt("id"),
+                                                   idLigue, idSousLigue, idEquipe, typeComp); 
+                        liste.add(competence);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        return liste;
+    }
+
 }
