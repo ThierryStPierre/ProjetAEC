@@ -27,7 +27,7 @@ public class ListeLigue extends AppCompatActivity {
     private int selectedId;
     private List<Ligue> listLigue;
 
-    private static final int ID_GESTIONNAIRE = 4;
+    private static final int ID_GESTIONNAIRE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

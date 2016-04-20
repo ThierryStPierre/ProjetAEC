@@ -1,6 +1,7 @@
 package com.example.thierry.projetaec.DataBaseInterface;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.thierry.projetaec.Objets.Competence;
 import com.example.thierry.projetaec.Objets.Equipe;
@@ -110,6 +111,7 @@ public class DbAccessRemote extends DbAccess{
                     liste = new ArrayList<Joueur>();
                     for (int index = 0; index < joueurArray.length(); index++) {
                         try {
+                            System.out.println("ca rentre ou pas dans dbaccessRemote");
                             JSONObject jsonObject = joueurArray.getJSONObject(index);
                             Joueur joueur = new Joueur(jsonObject.getInt("id"),
                                     jsonObject.getString("nom"),
@@ -210,6 +212,7 @@ public class DbAccessRemote extends DbAccess{
         parser =  new JSONParser(ligneResult);
         String status = parser.getStatus();
         if(status.equalsIgnoreCase("Success")) {
+            System.out.println("on rentre dans caseIgnore");
             JSONArray ligueArray = parser.getList("Ligues");
             if (ligueArray != null) {
                 liste = new ArrayList<Ligue>();
@@ -298,7 +301,7 @@ public class DbAccessRemote extends DbAccess{
         ArrayList<Ligue> liste = null;
         ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("action", "listeLigueParMarqueur"));
-        pairs.add(new BasicNameValuePair("idMarqueur", ""+idMarqueur));
+        pairs.add(new BasicNameValuePair("idMarqueur", "" + idMarqueur));
         sendRequest(pairs);
         while(parsingComplete == false);
 
