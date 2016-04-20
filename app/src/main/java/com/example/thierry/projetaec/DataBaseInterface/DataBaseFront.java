@@ -115,7 +115,7 @@ public class DataBaseFront extends DbAccess {
 
     @Override
     public LoginObject validateLogin(String user, String pass) {
-        return null;
+        return dba.validateLogin(user, pass);
     }
 
     @Override

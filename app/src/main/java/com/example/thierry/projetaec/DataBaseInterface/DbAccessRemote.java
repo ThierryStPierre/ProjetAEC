@@ -330,27 +330,38 @@ public class DbAccessRemote extends DbAccess{
     }
 
     public LoginObject validateLogin(String user, String pass){
+        System.out.print("DbAccessRemote validateLogin  user= " + user + " pass= " + pass + "\n\n");
+        System.out.flush();
         LoginObject lObj = null;
         ArrayList<Competence> liste = null;
         ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
-        pairs.add(new BasicNameValuePair("action", "listeLigueParMarqueur"));
+        pairs.add(new BasicNameValuePair("action", "validateLogin"));
         pairs.add(new BasicNameValuePair("userName", user));
         pairs.add(new BasicNameValuePair("passWord", pass));
         sendRequest(pairs);
         while(parsingComplete == false);
 
         parser =  new JSONParser(ligneResult);
+        System.out.print("DbAccessRemote validateLogin ...(?)");
+        System.out.flush();
         String status = parser.getStatus();
+        System.out.print("DbAccessRemote validateLogin -- " + status + " !!");
+        System.out.flush();
         if(status.equalsIgnoreCase("Success")) {
 
-            JSONArray personArray = parser.getList("personne");
-            if(personArray != null) {
+
+            JSONObject personObject = parser.getJSONObject("personne");
+            System.out.print("DbAccessRemote validateLogin - personArray : "+ personObject +" !!\n\n");
+            System.out.flush();
+            if(personObject != null) {
                 try {
-                    JSONObject jsonObject = personArray.getJSONObject(0);
-                    int logId = jsonObject.getInt("id");
-                    String nom = jsonObject.getString("nom");
-                    String prenom = jsonObject.getString("prenom");
+                    int logId = personObject.getInt("id");
+                    String nom = personObject.getString("nom");
+                    String prenom = personObject.getString("prenom");
                     lObj  = new LoginObject(logId, nom, prenom);
+
+                    System.out.print("DbAccessRemote validateLogin - LoginObject : "+ lObj +" !!\n\n");
+                    System.out.flush();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -379,12 +390,15 @@ public class DbAccessRemote extends DbAccess{
                                 typeComp=Competence.competenceType.MARQUEUR;
                                 break;
                         }
-                        if(equipe != "")
+                        System.out.print("DbAccessRemote validateLogin equipe : " + equipe + ", sousLigue : " + sousLigue + " !!");
+                        System.out.flush();
+                        if(!equipe.isEmpty()){
                             idEquipe = Integer.parseInt(equipe);
-                        if(sousLigue != "")
+                        }
+                        if(!sousLigue.isEmpty())
                             idSousLigue = Integer.parseInt(sousLigue);
                         Competence competence = new Competence(jsonObject.getInt("id"),
-                                                   idLigue, idSousLigue, idEquipe, typeComp);
+                                idLigue, idSousLigue, idEquipe, typeComp);
                         liste.add(competence);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -397,5 +411,6 @@ public class DbAccessRemote extends DbAccess{
 
         return lObj;
     }
+
 
 }

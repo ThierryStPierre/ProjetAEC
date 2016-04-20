@@ -41,4 +41,12 @@ public class JSONParser {
             return null;
     }
 
+    public JSONObject getJSONObject(String str){
+        System.out.print("JSONParser.getJSONObject() str = " + str + "\n\n");
+        System.out.flush();
+        if(reader != null)
+            return reader.optJSONObject(str);
+        else
+            return null;
+    }
 }
