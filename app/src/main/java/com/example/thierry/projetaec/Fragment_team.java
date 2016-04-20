@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Created by daniel on 16-04-15.
  */
 public class Fragment_team extends Fragment implements View.OnClickListener{
-    private ArrayList<Button> btn = new ArrayList<>();
+    private ArrayList<CheckBox> btn = new ArrayList<>();
     private int tableBtn[] = {R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9,
             R.id.btn10, R.id.btn11, R.id.btn12, R.id.btn13, R.id.btn14, R.id.btn15, R.id.btn16, R.id.btn17, R.id.btn18, R.id.btn19,
             R.id.btn20, R.id.btn21, R.id.btn22, R.id.btn23, R.id.btn24, R.id.btn25, R.id.btn26, R.id.btn27, R.id.btn28, R.id.btn29,
@@ -29,14 +29,14 @@ View view;
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             view =  inflater.inflate(R.layout.content_selection_joueurs, container, false);
-            howManyTeam = 2;
+            howManyTeam = 10;
             btnSave = (Button) view.findViewById(R.id.btnsave);
             btnSave.setOnClickListener(this);
             btnAllNone = (Button) view.findViewById(R.id.btncheckall);
             btnAllNone.setOnClickListener(this);
 
             for (int j = 0; j < howManyTeam; j ++){
-                btn.add((Button)view.findViewById(tableBtn[j]));
+                btn.add((CheckBox)view.findViewById(tableBtn[j]));
                 btn.get(j).setVisibility(View.VISIBLE);
                 btn.get(j).setText(("4"));
                 btn.get(j).setOnClickListener(this);
@@ -48,6 +48,14 @@ View view;
     public void onClick(View v) {
         CheckBox checkbox = (CheckBox)v;
         if(checkbox == btnSave){
+            for (int j = 0; j < howManyTeam; j ++) {
+                if (btn.get(j).isChecked()) {
+
+                }
+                else{
+                    btn.get(j).setVisibility(View.INVISIBLE);
+                }
+            }
             /*Bundle b = new Bundle();
             Intent i = new Intent(Selection_Joueurs.this, Team1VsTeam2.class);
             Toast.makeText(Selection_Joueurs.this, "Sauvegarde terminé", Toast.LENGTH_SHORT).show();
