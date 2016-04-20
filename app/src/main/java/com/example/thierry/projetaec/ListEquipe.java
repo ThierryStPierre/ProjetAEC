@@ -51,7 +51,7 @@ public class ListEquipe extends AppCompatActivity {
         listViewEquipe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         setListEquipeFromDb(getIdLigue());
-
+        Toast.makeText(ListEquipe.this, ""+getIdLigue(), Toast.LENGTH_SHORT).show();
         listViewEquipe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -128,7 +128,9 @@ public class ListEquipe extends AppCompatActivity {
 
     public int getIdLigue(){
         Intent i = new Intent();
-        int idLigue = i.getIntExtra("ID_LIGUE",0);
+      //  int idLigue = i.getIntExtra("ID_LIGUE",id_Ligue);
+        Bundle b = getIntent().getExtras();
+        int idLigue = b.getInt("ID_LIGUE", -1);
         return idLigue;
     }
 

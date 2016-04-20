@@ -37,11 +37,11 @@ public class ListeLigue extends AppCompatActivity {
 
         listLigue = new ArrayList<>();
 
-         dbFront = new DataBaseFront(this);//CONNECTION A LA DB
+        dbFront = new DataBaseFront(this);//CONNECTION A LA DB
 
         listViewLigue = (ListView)findViewById(R.id.listViewLigue);
 
-        setListLigueFromDb(ID_GESTIONNAIRE);
+        setListLigueFromDb(getIdGestionnaire());
 
         listViewLigue.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -86,6 +86,12 @@ public class ListeLigue extends AppCompatActivity {
         Intent i= new Intent(ListeLigue.this, ListEquipe.class);
         i.putExtra("ID_LIGUE",idLigue);
         startActivity(i);
+    }
+
+    public int getIdGestionnaire(){
+        Intent i = new Intent();
+        int id = i.getIntExtra("LOGIN", 0);
+        return id;
     }
 
     

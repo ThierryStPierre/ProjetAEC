@@ -11,7 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.thierry.projetaec.DataBaseInterface.DataBaseFront;
 import com.example.thierry.projetaec.Dialog.Login;
+import com.example.thierry.projetaec.Objets.Competence;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,7 +26,7 @@ private Button bouttonPartie;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acceuil);
-        bouttonPartie  = (Button) findViewById(R.id.btnPartie);
+
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
@@ -33,6 +38,8 @@ private Button bouttonPartie;
                         .setAction("Action", null).show();
             }
         });*/
+
+        bouttonPartie  = (Button) findViewById(R.id.btnPartie);
         bouttonPartie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,12 +51,8 @@ private Button bouttonPartie;
 
     }
 
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -69,23 +72,28 @@ private Button bouttonPartie;
 
         return super.onOptionsItemSelected(item);
     }
-    public void login(){
 
-        final Dialog d = new Dialog(MainActivity.this);
-        d.setContentView(R.layout.pop_formulaire_login);
-        d.setTitle("Login");
-        final EditText txtLoginUserName = (EditText)d.findViewById(R.id.txtDialogUsername);
-        final EditText txtLoginPassword = (EditText)d.findViewById(R.id.txtDialogPassword);
-        Button btnDialogLogin = (Button)d.findViewById(R.id.btnDialogLogin);
-        Button btnDialogCancel = (Button)d.findViewById(R.id.btnDialogAnnuler);
-        d.show();
-        Toast.makeText(MainActivity.this, "sfoljijoijweoimc", Toast.LENGTH_SHORT).show();
+    public void login(){
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setContentView(R.layout.pop_formulaire_login);
+        dialog.setTitle("Login");
+        final EditText txtLoginUserName = (EditText)dialog.findViewById(R.id.txtDialogUsername);
+        final EditText txtLoginPassword = (EditText)dialog.findViewById(R.id.txtDialogPassword);
+        Button btnDialogLogin = (Button)dialog.findViewById(R.id.btnDialogLogin);
+        Button btnDialogCancel = (Button)dialog.findViewById(R.id.btnDialogAnnuler);
+        dialog.show();
+
         btnDialogLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String userName = txtLoginUserName.getText().toString();
                 String password = txtLoginPassword.getText().toString();
+
                 if (1 == 1) {//Vérification du mot de pass
+                    Intent i = new Intent(MainActivity.this, ListeLigue.class);
+                    int idGestionnaire = 1;//dummy data
+                    i.putExtra("LOGIN", idGestionnaire);
+                    startActivity(i);
 
                 } else {//Échec a la vérification
 
@@ -95,8 +103,16 @@ private Button bouttonPartie;
         btnDialogCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                d.dismiss();
+                dialog.dismiss();
             }
         });
     }
+    public boolean verifyInfo(String user, String pass){//INCOMPLETE
+        boolean boo = false;
+        DataBaseFront dbFront = new DataBaseFront(this);
+        List<Competence> c = dbFront.validateLogin(user, pass);
+        return boo;
+    }
+
+
 }
