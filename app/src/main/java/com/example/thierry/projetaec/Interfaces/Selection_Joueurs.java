@@ -32,6 +32,7 @@ public class Selection_Joueurs extends AppCompatActivity {
             btn.get(j).setText(("4"));
         }*/
     }
+    //Selection les joueurs de l'équipe
     public void onClick(View v) {
         CheckBox checkBox = (CheckBox)v;
         if(checkBox == btnSave){
