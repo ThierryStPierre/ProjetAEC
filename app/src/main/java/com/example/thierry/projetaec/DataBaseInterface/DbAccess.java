@@ -4,6 +4,7 @@ import com.example.thierry.projetaec.Objets.Equipe;
 import com.example.thierry.projetaec.Objets.Joueur;
 import com.example.thierry.projetaec.Objets.Ligue;
 import com.example.thierry.projetaec.Objets.Competence;
+import com.example.thierry.projetaec.Objets.LoginObject;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public  abstract class DbAccess {
     abstract public List<Ligue> getListAccreditedLigues(int idMarqueur);
     abstract public List<Equipe> getListEquipes(int idLigue);
     abstract public List<Joueur> getListGestionnaires();
-    abstract public List<Competence> validateLogin(String user, String pass);
+    abstract public LoginObject validateLogin(String user, String pass);
 }

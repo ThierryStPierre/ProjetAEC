@@ -7,6 +7,7 @@ import com.example.thierry.projetaec.Objets.Competence;
 import com.example.thierry.projetaec.Objets.Equipe;
 import com.example.thierry.projetaec.Objets.Joueur;
 import com.example.thierry.projetaec.Objets.Ligue;
+import com.example.thierry.projetaec.Objets.LoginObject;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -113,7 +114,7 @@ public class DataBaseFront extends DbAccess {
     }
 
     @Override
-    public List<Competence> validateLogin(String user, String pass) {
+    public LoginObject validateLogin(String user, String pass) {
         return null;
     }
 

@@ -7,6 +7,7 @@ import com.example.thierry.projetaec.Objets.Competence;
 import com.example.thierry.projetaec.Objets.Equipe;
 import com.example.thierry.projetaec.Objets.Joueur;
 import com.example.thierry.projetaec.Objets.Ligue;
+import com.example.thierry.projetaec.Objets.LoginObject;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -328,7 +329,8 @@ public class DbAccessRemote extends DbAccess{
         return liste;
     }
 
-    public List<Competence> validateLogin(String user, String pass){
+    public LoginObject validateLogin(String user, String pass){
+        LoginObject lObj = null;
         ArrayList<Competence> liste = null;
         ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("action", "listeLigueParMarqueur"));
@@ -340,7 +342,20 @@ public class DbAccessRemote extends DbAccess{
         parser =  new JSONParser(ligneResult);
         String status = parser.getStatus();
         if(status.equalsIgnoreCase("Success")) {
-            JSONArray ligueArray = parser.getList("Ligues");
+
+            JSONArray personArray = parser.getList("personne");
+            if(personArray != null) {
+                try {
+                    JSONObject jsonObject = personArray.getJSONObject(0);
+                    int logId = jsonObject.getInt("id");
+                    String nom = jsonObject.getString("nom");
+                    String prenom = jsonObject.getString("prenom");
+                    lObj  = new LoginObject(logId, nom, prenom);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            JSONArray ligueArray = parser.getList("competence");
             if (ligueArray != null) {
                 liste = new ArrayList<Competence>();
                 for (int index = 0; index < ligueArray.length(); index++) {
@@ -369,7 +384,7 @@ public class DbAccessRemote extends DbAccess{
                         if(sousLigue != "")
                             idSousLigue = Integer.parseInt(sousLigue);
                         Competence competence = new Competence(jsonObject.getInt("id"),
-                                                   idLigue, idSousLigue, idEquipe, typeComp); 
+                                                   idLigue, idSousLigue, idEquipe, typeComp);
                         liste.add(competence);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -377,8 +392,10 @@ public class DbAccessRemote extends DbAccess{
                 }
             }
         }
+        if(lObj != null)
+            lObj.setCompetences(liste);
 
-        return liste;
+        return lObj;
     }
 
 }
