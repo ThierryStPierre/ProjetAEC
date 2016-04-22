@@ -15,8 +15,10 @@ import android.widget.Toast;
 
 import com.example.thierry.projetaec.Adapteurs.CustomAdapterEquipe;
 import com.example.thierry.projetaec.DataBaseInterface.DataBaseFront;
+import com.example.thierry.projetaec.Dialog.Login;
 import com.example.thierry.projetaec.Interfaces.Team1VsTeam2;
 import com.example.thierry.projetaec.Objets.Equipe;
+import com.example.thierry.projetaec.Objets.LoginObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +52,8 @@ public class ListEquipe extends AppCompatActivity {
         listViewEquipe = (ListView)findViewById(R.id.listEquipe);
         listViewEquipe.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        setListEquipeFromDb(getIdLigue());
-        Toast.makeText(ListEquipe.this, ""+getIdLigue(), Toast.LENGTH_SHORT).show();
+        setListEquipeFromDb(getIdLigue()); //Injection de l'ID Ligue   <-----
+
         listViewEquipe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -79,7 +81,7 @@ public class ListEquipe extends AppCompatActivity {
                     check.toggle();
                     
                 } else if (checkedItems.size() > 2) {
-                   // Toast.makeText(ListEquipe.this, "Deux équipes par partie!"+selectedItems, Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -134,10 +136,6 @@ public class ListEquipe extends AppCompatActivity {
         return idLigue;
     }
 
-    public void sendId(int id){
-        //faire un bundle et envoyé les id
-    }
-
     public void noMoreThan2(ArrayList<String> array){
         if(array.size() > 2){
             String temp = array.get(1);
@@ -147,6 +145,7 @@ public class ListEquipe extends AppCompatActivity {
             array.remove(2);
         }
     }
+
     public String returnPositionToUncheck(ArrayList<String> array){
         int temp = 0;
         if(array.size() >= 2){
@@ -155,4 +154,12 @@ public class ListEquipe extends AppCompatActivity {
         }
         return array.get(temp);
     }
+
+    public LoginObject getUser(){
+        Intent i = new Intent();
+        Bundle b = getIntent().getExtras();
+        LoginObject user = b.getParcelable("LOGIN");
+        return user;
+    }
+
 }

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.thierry.projetaec.DataBaseInterface.DataBaseFront;
 import com.example.thierry.projetaec.Dialog.Login;
 import com.example.thierry.projetaec.Objets.Competence;
+import com.example.thierry.projetaec.Objets.LoginObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,9 +44,9 @@ private Button bouttonPartie;
         bouttonPartie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  login();
-               Intent i = new Intent(MainActivity.this, ListeLigue.class);
-                startActivity(i);
+                login();
+             /*  Intent i = new Intent(MainActivity.this, ListeLigue.class);
+                startActivity(i);*/
             }
         });
 
@@ -81,22 +82,30 @@ private Button bouttonPartie;
         final EditText txtLoginPassword = (EditText)dialog.findViewById(R.id.txtDialogPassword);
         Button btnDialogLogin = (Button)dialog.findViewById(R.id.btnDialogLogin);
         Button btnDialogCancel = (Button)dialog.findViewById(R.id.btnDialogAnnuler);
+
         dialog.show();
 
         btnDialogLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userName = txtLoginUserName.getText().toString();
+
+                String username = txtLoginUserName.getText().toString();
                 String password = txtLoginPassword.getText().toString();
 
-                if (1 == 1) {//Vérification du mot de pass
+                DataBaseFront dbFront = new DataBaseFront(MainActivity.this);
+
+                if (dbFront.validateLogin(username, password) != null){//Vérification du mot de pass
+
+                    LoginObject utilisateur = dbFront.validateLogin(username, password);
                     Intent i = new Intent(MainActivity.this, ListeLigue.class);
-                    int idGestionnaire = 1;//dummy data
-                    i.putExtra("LOGIN", idGestionnaire);
+
+                    i.putExtra("LOGIN", utilisateur);
+
                     startActivity(i);
 
                 } else {//Échec a la vérification
-
+                    Toast.makeText(MainActivity.this, "Erreur dans le nom ou mot de passe",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -107,12 +116,4 @@ private Button bouttonPartie;
             }
         });
     }
-    public boolean verifyInfo(String user, String pass){//INCOMPLETE
-        boolean boo = false;
-        DataBaseFront dbFront = new DataBaseFront(this);
-        List<Competence> c = dbFront.validateLogin(user, pass);
-        return boo;
-    }
-
-
 }

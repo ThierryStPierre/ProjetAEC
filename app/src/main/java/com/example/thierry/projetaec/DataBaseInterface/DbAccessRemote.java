@@ -378,16 +378,16 @@ public class DbAccessRemote extends DbAccess{
                         int idLigue=jsonObject.getInt("ligue");
                         int idSousLigue=-1;
                         int idEquipe = -1;
-                        Competence.competenceType typeComp = Competence.competenceType.NO_COMPETENCE;
+                        int typeComp = 0;//Competence.competenceType.NO_COMPETENCE;
                         switch(comp){
                             case "Gestionnaire":
-                                typeComp=Competence.competenceType.GESTIONNAIRE;
+                                typeComp=1;//Competence.competenceType.GESTIONNAIRE;
                                 break;
                             case "Capitaine":
-                                typeComp=Competence.competenceType.CAPITAINE;
+                                typeComp=2;//Competence.competenceType.CAPITAINE;
                                 break;
                             case "Marqueur":
-                                typeComp=Competence.competenceType.MARQUEUR;
+                                typeComp=3;//Competence.competenceType.MARQUEUR;
                                 break;
                         }
                         System.out.print("DbAccessRemote validateLogin equipe : " + equipe + ", sousLigue : " + sousLigue + " !!");
