@@ -37,7 +37,6 @@ public class Team1VsTeam2 extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.team1_vs_team2);
             dbFront = new DataBaseFront(this);//CONNECTION
-
             setListEquipeFromDb(getIdEquipe());
             mPager = (ViewPager) findViewById(R.id.pager);
             mPager.setOffscreenPageLimit(2);
@@ -46,7 +45,6 @@ public class Team1VsTeam2 extends AppCompatActivity {
        }
 
     @Override
-
     //Permet de changer d'une équipe à une autre en appuyant sur le bouton back
     public void onBackPressed() {
         if (mPager.getCurrentItem() == 0) {
@@ -56,10 +54,12 @@ public class Team1VsTeam2 extends AppCompatActivity {
         }
     }
     //Chercher dans la base de données les informations des joueurs
-    public void setListEquipeFromDb(int idEquipe) {
-        listJoueurs = dbFront.getListJoueursParEquipe(idEquipe, 0);
-        //String test2 = listJoueurs.get(0).toString();
-        //Toast.makeText(Team1VsTeam2.this, test2, Toast.LENGTH_SHORT).show();
+    public void setListEquipeFromDb(ArrayList<String> idEquipe) {
+        int equipe2 = 2;
+
+        listJoueurs = dbFront.getListJoueursParEquipe(equipe2);
+        String test2 = listJoueurs.get(0).toString();
+        Toast.makeText(Team1VsTeam2.this, test2, Toast.LENGTH_SHORT).show();
 
     }
     //Charger les joueurs de chaque equipe
@@ -70,10 +70,10 @@ public class Team1VsTeam2 extends AppCompatActivity {
 
     }
     //Chercher les id des équipes choisies de l'interface ListEquipe
-    public int getIdEquipe(){
+    public ArrayList<String> getIdEquipe(){
         Intent i = new Intent();
-        int idEquipe = i.getIntExtra("ID_EQUIPE",0);
-        System.out.println(idEquipe);
+        Bundle b = getIntent().getExtras();
+        ArrayList<String> idEquipe = b.getStringArrayList("ID_EQUIPE");
         return idEquipe;
     }
     //Charger les deux vues pour la partie
@@ -87,18 +87,27 @@ public class Team1VsTeam2 extends AppCompatActivity {
        // Insert les 2 fragments dans cette vue
         public Fragment getItem(int position) {
             if (position == 0) {
+                String test2 = listJoueurs.get(0).toString();
+                System.out.println(listJoueurs.get(0).toString());
+                ArrayList<Joueur> newone = new ArrayList<>(listJoueurs);
+                Bundle bundle = new Bundle();
+                //bundle.putarr("myList", newone);
+
+                Fragment fragment = new Fragment_team();
+                fragment.setArguments(bundle);
+                //Toast.makeText(Team1VsTeam2.this, test2, Toast.LENGTH_SHORT).show();
+                /*Fragment fragment = new Fragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(key, value);
+                fragment.setArguments(bundle);*/
                 return new Fragment_team();
             }
             else
                 return new Fragment_team2();
         }
-                        @Override public int getCount() {
-                            return NUM_PAGES;
+        @Override public int getCount() {
+            return NUM_PAGES;
+        }
 
     }
-
-                }
-
-
-
 }

@@ -43,9 +43,9 @@ private Button bouttonPartie;
         bouttonPartie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  login();
-               Intent i = new Intent(MainActivity.this, ListeLigue.class);
-                startActivity(i);
+              login();
+              // Intent i = new Intent(MainActivity.this, ListeLigue.class);
+                //startActivity(i);
             }
         });
 

@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.example.thierry.projetaec.Interfaces.Team1VsTeam2;
+import com.example.thierry.projetaec.Objets.Joueur;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by daniel on 16-04-15.
@@ -22,20 +26,25 @@ public class Fragment_team extends Fragment implements View.OnClickListener{
             R.id.btn30, R.id.btn31, R.id.btn32, R.id.btn33, R.id.btn34, R.id.btn35, R.id.btn36};
     private Button btnSave;
     private Button btnAllNone;
-    private int howManyTeam;
+    private int howManyPlayer;
     private boolean allSelect = false;
 View view;
-        @Override
 
+public void Fragment_team(List<Joueur> listJoueur){
+
+    }
+    @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             view =  inflater.inflate(R.layout.content_selection_joueurs, container, false);
-            howManyTeam = 10;
+            //List<Joueur> localJoueur = Team1VsTeam2.listJoueur;
+
+            howManyPlayer = 10;
             btnSave = (Button) view.findViewById(R.id.btnsave);
             btnSave.setOnClickListener(this);
             btnAllNone = (Button) view.findViewById(R.id.btncheckall);
             btnAllNone.setOnClickListener(this);
 
-            for (int j = 0; j < howManyTeam; j ++){
+            for (int j = 0; j < howManyPlayer; j ++){
                 btn.add((CheckBox)view.findViewById(tableBtn[j]));
                 btn.get(j).setVisibility(View.VISIBLE);
                 btn.get(j).setText(("4"));
@@ -46,14 +55,16 @@ View view;
 
     @Override
     public void onClick(View v) {
+
         CheckBox checkbox = (CheckBox)v;
         if(checkbox == btnSave){
-            for (int j = 0; j < howManyTeam; j ++) {
+            for (int j = 0; j < howManyPlayer; j ++) {
                 if (btn.get(j).isChecked()) {
 
                 }
                 else{
                     btn.get(j).setVisibility(View.INVISIBLE);
+
                 }
             }
             /*Bundle b = new Bundle();
@@ -63,12 +74,12 @@ View view;
         }
         else if(checkbox == btnAllNone){
             if (allSelect == false)
-            for (int j = 0; j < howManyTeam; j ++){
+            for (int j = 0; j < howManyPlayer; j ++){
                 btn.get(j).setBackground(getResources().getDrawable(R.drawable.boutton_joueur_selectionne));
                 allSelect = true;
             }
             else
-                for (int j = 0; j < howManyTeam; j ++) {
+                for (int j = 0; j < howManyPlayer; j ++) {
                     btn.get(j).setBackground(getResources().getDrawable(R.drawable.boutton_joueur));
                     allSelect = false;
                 }

@@ -28,7 +28,7 @@ public class DbAccessSqlite extends DbAccess{
     }
 
     @Override
-    public List<Joueur> getListJoueursParEquipe(int idEquipe, int idSaison) {
+    public List<Joueur> getListJoueursParEquipe(int idEquipe/*, int idSaison*/) {
         return null;
     }
 
