@@ -1,11 +1,14 @@
 package com.example.thierry.projetaec.Objets;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.sql.Date;
 
 /**
  * Created by jonathan on 2016-04-06.
  */
-public class Joueur {
+public class Joueur implements Parcelable{
     private int idJoueur;
 //    private int idEquipe;
     private String nom;
@@ -107,4 +110,42 @@ public class Joueur {
     public void setNumeroChandail(int numeroChandail) {
         this.numeroChandail = numeroChandail;
     }
+
+    public Joueur(Parcel in){
+        this.nom = in.readString();
+        this.prenom = in.readString();
+        this.dateNaissance = new Date(in.readLong());
+        this.telephone = in.readString();
+        this.courriel = in.readString();
+        this.numeroChandail = in.readInt();
+
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nom);
+        dest.writeString(prenom);
+        dest.writeLong(dateNaissance.getTime());
+        dest.writeString(telephone);
+        dest.writeString(courriel);
+        dest.writeInt(numeroChandail);
+
+
+    }
+    public static final Parcelable.Creator<Joueur> CREATOR = new Parcelable.Creator<Joueur>(){
+        @Override
+        public Joueur createFromParcel(Parcel source) { return new Joueur(source);
+        }
+
+        @Override
+        public Joueur[] newArray(int size)
+        {
+            return new Joueur[size];
+        }
+    };
 }

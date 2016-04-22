@@ -92,7 +92,9 @@ public class ListEquipe extends AppCompatActivity {
             public void onClick(View v) {
                 Bundle b = new Bundle();
                 Intent i = new Intent(ListEquipe.this, Team1VsTeam2.class);
+
                 i.putExtra("ID_EQUIPE", selectedItems);
+
                 startActivity(i);
 
                 //Toast.makeText(ListEquipe.this, selectedItems + "", Toast.LENGTH_SHORT).show();

@@ -89,8 +89,8 @@ public class DataBaseFront extends DbAccess {
     }
 
     @Override
-    public List<Joueur> getListJoueursParEquipe(int idEquipe, int idSaison) {
-        return dba.getListJoueursParEquipe(idEquipe, idSaison);
+    public List<Joueur> getListJoueursParEquipe(int idEquipe/*, int idSaison*/) {
+        return dba.getListJoueursParEquipe(idEquipe/*, idSaison*/);
     }
 
     @Override

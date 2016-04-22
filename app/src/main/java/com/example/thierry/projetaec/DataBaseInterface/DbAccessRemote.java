@@ -165,12 +165,12 @@ public class DbAccessRemote extends DbAccess{
         return liste;
     }
 
-    public List<Joueur> getListJoueursParEquipe(int idEquipe, int idSaison) {
+    public List<Joueur> getListJoueursParEquipe(int idEquipe/*int idSaison*/) {
         ArrayList<Joueur> liste = null;
         ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("action", "listeJoueur"));
         pairs.add(new BasicNameValuePair("idEquipe", ""+idEquipe));
-        pairs.add(new BasicNameValuePair("idSaison", "" + idSaison));
+        //pairs.add(new BasicNameValuePair("idSaison", "" + idSaison));
         parsingComplete = false;
         sendRequest(pairs);
         while(parsingComplete == false);
@@ -178,18 +178,24 @@ public class DbAccessRemote extends DbAccess{
         if(ligneResult != null) {
             parser =  new JSONParser(ligneResult);
             String status = parser.getStatus();
+            System.out.println("salut Men1");
             if(status.equalsIgnoreCase("Success")) {
+                System.out.println("salut men2");
                 JSONArray joueurArray = parser.getList("Alignement");
                 if (joueurArray != null) {
+                    System.out.println("salut men3");
                     liste = new ArrayList<Joueur>();
                     for (int index = 0; index < joueurArray.length(); index++) {
+                        System.out.println("salut men4");
                         try {
                             JSONObject jsonObject = joueurArray.getJSONObject(index);
                             Joueur joueur = new Joueur(jsonObject.getInt("id"),
+
                                     jsonObject.getString("nom"),
                                     jsonObject.getString("prenom"),
                                     jsonObject.getInt("numeroChandail"));
                             liste.add(joueur);
+                            System.out.println("salut men5");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
