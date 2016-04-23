@@ -22,7 +22,7 @@ public class JSONParser {
     public String getStatus(){
         if(reader != null)
             try{
-            return reader.getString("Status");
+                return reader.getString("Status");
             } catch (JSONException e) {
                 e.printStackTrace();
                 return null;
@@ -48,5 +48,18 @@ public class JSONParser {
             return reader.optJSONObject(str);
         else
             return null;
+    }
+
+    public int getIndex(){
+        if(reader != null) {
+            try{
+                return reader.getInt("Id");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return -1;
+            }
+        }
+        else
+            return -1;
     }
 }

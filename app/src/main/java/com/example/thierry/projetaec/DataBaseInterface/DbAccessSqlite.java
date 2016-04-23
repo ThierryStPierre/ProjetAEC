@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.thierry.projetaec.Objets.Competence;
 import com.example.thierry.projetaec.Objets.Equipe;
+import com.example.thierry.projetaec.Objets.Evenement;
 import com.example.thierry.projetaec.Objets.Joueur;
 import com.example.thierry.projetaec.Objets.Ligue;
 import com.example.thierry.projetaec.Objets.LoginObject;
@@ -61,5 +62,9 @@ public class DbAccessSqlite extends DbAccess{
     @Override
     public LoginObject validateLogin(String user, String pass) {
         return null;
+    }
+
+    public int ecritEvenement(Evenement e){
+        return 0;
     }
 }

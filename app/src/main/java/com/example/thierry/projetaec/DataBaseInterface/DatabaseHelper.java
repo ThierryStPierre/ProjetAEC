@@ -34,23 +34,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
 
         sql = "CREATE TABLE IF NOT EXISTS Equipe (" +
-                "ID_Equipe INTEGER" +
+                "ID_Equipe INTEGER," +
                 "ID_Ligue Integer, " +
                 "ID_Ligue text)";
         db.execSQL(sql);
 
         sql = "CREATE TABLE IF NOT EXISTS Personne (" +
-                "ID_Personne INTEGER" +
+                "ID_Personne INTEGER," +
                 "Nom text, " +
                 "Prenom text)";
         db.execSQL(sql);
 
-        sql = "CREATE TABLE IF NOT EXISTS Joueur (" +
+/*        sql = "CREATE TABLE IF NOT EXISTS Joueur (" +
                 "ID_Joueur INTEGER" +
                 "ID_Personne INTEGER" +
                 "Nom text, " +
                 "Prenom text," +
                 "Capitaine INTEGER )";
+        db.execSQL(sql);*/
+        sql = "CREATE TABLE IF NOT EXISTS Evenement(" +
+                "ID_PersonneBut INTEGER," +
+                "ID_PersonnePasse INTEGER," +
+                "ID_Partie INTEGER NOT NULL," +
+                "ID_PersonnePenalite INTEGER," +
+                "ID_PersonneTire INTEGER)";
         db.execSQL(sql);
     }
 

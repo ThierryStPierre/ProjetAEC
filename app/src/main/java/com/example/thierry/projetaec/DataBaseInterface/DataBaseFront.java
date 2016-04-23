@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 
 import com.example.thierry.projetaec.Objets.Competence;
 import com.example.thierry.projetaec.Objets.Equipe;
+import com.example.thierry.projetaec.Objets.Evenement;
 import com.example.thierry.projetaec.Objets.Joueur;
 import com.example.thierry.projetaec.Objets.Ligue;
 import com.example.thierry.projetaec.Objets.LoginObject;
@@ -123,4 +124,7 @@ public class DataBaseFront extends DbAccess {
         return dba.getListAccreditedLigues(idMarqueur);
     }
 
+    public int ecritEvenement(Evenement e){
+        return dba.ecritEvenement(e);
+    }
 }

@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.example.thierry.projetaec.Objets.Competence;
 import com.example.thierry.projetaec.Objets.Equipe;
+import com.example.thierry.projetaec.Objets.Evenement;
 import com.example.thierry.projetaec.Objets.Joueur;
 import com.example.thierry.projetaec.Objets.Ligue;
 import com.example.thierry.projetaec.Objets.LoginObject;
@@ -104,23 +105,25 @@ public class DbAccessRemote extends DbAccess{
         while(parsingComplete == false);
 
         if(ligneResult != null) {
-            parser =  new JSONParser(ligneResult);
+            parser = new JSONParser(ligneResult);
             String status = parser.getStatus();
-            if(status.equalsIgnoreCase("Success")) {
-                JSONArray joueurArray = parser.getList("Alignement");
-                if (joueurArray != null) {
-                    liste = new ArrayList<Joueur>();
-                    for (int index = 0; index < joueurArray.length(); index++) {
-                        try {
-                            System.out.println("ca rentre ou pas dans dbaccessRemote");
-                            JSONObject jsonObject = joueurArray.getJSONObject(index);
-                            Joueur joueur = new Joueur(jsonObject.getInt("id"),
-                                    jsonObject.getString("nom"),
-                                    jsonObject.getString("prenom"),
-                                    jsonObject.getInt("numeroChandail"));
-                            liste.add(joueur);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+            if (!status.isEmpty()) {
+                if(status.equalsIgnoreCase("Success")) {
+                    JSONArray joueurArray = parser.getList("Alignement");
+                    if (joueurArray != null) {
+                        liste = new ArrayList<Joueur>();
+                        for (int index = 0; index < joueurArray.length(); index++) {
+                            try {
+                                System.out.println("ca rentre ou pas dans dbaccessRemote");
+                                JSONObject jsonObject = joueurArray.getJSONObject(index);
+                                Joueur joueur = new Joueur(jsonObject.getInt("id"),
+                                        jsonObject.getString("nom"),
+                                        jsonObject.getString("prenom"),
+                                        jsonObject.getInt("numeroChandail"));
+                                liste.add(joueur);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
@@ -140,22 +143,24 @@ public class DbAccessRemote extends DbAccess{
         while(parsingComplete == false);
 
         if(ligneResult != null) {
-            parser =  new JSONParser(ligneResult);
+            parser = new JSONParser(ligneResult);
             String status = parser.getStatus();
-            if(status.equalsIgnoreCase("Success")) {
-                JSONArray joueurArray = parser.getList("Alignement");
-                if (joueurArray != null) {
-                    liste = new ArrayList<Joueur>();
-                    for (int index = 0; index < joueurArray.length(); index++) {
-                        try {
-                            JSONObject jsonObject = joueurArray.getJSONObject(index);
-                            Joueur joueur = new Joueur(jsonObject.getInt("id"),
-                                    jsonObject.getString("nom"),
-                                    jsonObject.getString("prenom"),
-                                    jsonObject.getInt("numeroChandail"));
-                            liste.add(joueur);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+            if (!status.isEmpty()) {
+                if(status.equalsIgnoreCase("Success")) {
+                    JSONArray joueurArray = parser.getList("Alignement");
+                    if (joueurArray != null) {
+                        liste = new ArrayList<Joueur>();
+                        for (int index = 0; index < joueurArray.length(); index++) {
+                            try {
+                                JSONObject jsonObject = joueurArray.getJSONObject(index);
+                                Joueur joueur = new Joueur(jsonObject.getInt("id"),
+                                        jsonObject.getString("nom"),
+                                        jsonObject.getString("prenom"),
+                                        jsonObject.getInt("numeroChandail"));
+                                liste.add(joueur);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
@@ -176,28 +181,30 @@ public class DbAccessRemote extends DbAccess{
         while(parsingComplete == false);
 
         if(ligneResult != null) {
-            parser =  new JSONParser(ligneResult);
+            parser = new JSONParser(ligneResult);
             String status = parser.getStatus();
-            System.out.println("salut Men1");
-            if(status.equalsIgnoreCase("Success")) {
-                System.out.println("salut men2");
-                JSONArray joueurArray = parser.getList("Alignement");
-                if (joueurArray != null) {
-                    System.out.println("salut men3");
-                    liste = new ArrayList<Joueur>();
-                    for (int index = 0; index < joueurArray.length(); index++) {
-                        System.out.println("salut men4");
-                        try {
-                            JSONObject jsonObject = joueurArray.getJSONObject(index);
-                            Joueur joueur = new Joueur(jsonObject.getInt("id"),
+            if (!status.isEmpty()) {
+                System.out.println("salut Men1");
+                if(status.equalsIgnoreCase("Success")) {
+                    System.out.println("salut men2");
+                    JSONArray joueurArray = parser.getList("Alignement");
+                    if (joueurArray != null) {
+                        System.out.println("salut men3");
+                        liste = new ArrayList<Joueur>();
+                        for (int index = 0; index < joueurArray.length(); index++) {
+                            System.out.println("salut men4");
+                            try {
+                                JSONObject jsonObject = joueurArray.getJSONObject(index);
+                                Joueur joueur = new Joueur(jsonObject.getInt("id"),
 
-                                    jsonObject.getString("nom"),
-                                    jsonObject.getString("prenom"),
-                                    jsonObject.getInt("numeroChandail"));
-                            liste.add(joueur);
-                            System.out.println("salut men5");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                                        jsonObject.getString("nom"),
+                                        jsonObject.getString("prenom"),
+                                        jsonObject.getInt("numeroChandail"));
+                                liste.add(joueur);
+                                System.out.println("salut men5");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
@@ -216,22 +223,26 @@ public class DbAccessRemote extends DbAccess{
         sendRequest(pairs);
         while(parsingComplete == false);
 
-        parser =  new JSONParser(ligneResult);
-        String status = parser.getStatus();
-        if(status.equalsIgnoreCase("Success")) {
-            System.out.println("on rentre dans caseIgnore");
-            JSONArray ligueArray = parser.getList("Ligues");
-            if (ligueArray != null) {
-                liste = new ArrayList<Ligue>();
-                for (int index = 0; index < ligueArray.length(); index++) {
-                    try {
-                        JSONObject jsonObject = ligueArray.getJSONObject(index);
-                        Ligue ligue = new Ligue(jsonObject.getInt("id"),
-                                jsonObject.getString("nom")/*,
-                                                    jsonObject.getInt("idOwnder")*/);
-                        liste.add(ligue);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        if(ligneResult != null) {
+            parser = new JSONParser(ligneResult);
+            String status = parser.getStatus();
+            if (!status.isEmpty()) {
+                if(status.equalsIgnoreCase("Success")) {
+                    System.out.println("on rentre dans caseIgnore");
+                    JSONArray ligueArray = parser.getList("Ligues");
+                    if (ligueArray != null) {
+                        liste = new ArrayList<Ligue>();
+                        for (int index = 0; index < ligueArray.length(); index++) {
+                            try {
+                                JSONObject jsonObject = ligueArray.getJSONObject(index);
+                                Ligue ligue = new Ligue(jsonObject.getInt("id"),
+                                        jsonObject.getString("nom")/*,
+                                                            jsonObject.getInt("idOwnder")*/);
+                                liste.add(ligue);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 }
             }
@@ -247,23 +258,27 @@ public class DbAccessRemote extends DbAccess{
         sendRequest(pairs);
         while(parsingComplete == false);
 
-        parser =  new JSONParser(ligneResult);
-        JSONArray ligueArray = parser.getList("Equipes");
-        String status = parser.getStatus();
-        if(status.equalsIgnoreCase("Success")) {
-            System.out.print("DataBaseFront.getListEquipes() ligueArray  = " + ligueArray + "\n\n");
-            System.out.flush();
-            if (ligueArray != null) {
-                liste = new ArrayList<Equipe>();
-                for (int index = 0; index < ligueArray.length(); index++) {
-                    try {
-                        JSONObject jsonObject = ligueArray.getJSONObject(index);
-                        Equipe equipe = new Equipe(jsonObject.getInt("id"),
-                                idLigue,
-                                jsonObject.getString("nom"));
-                        liste.add(equipe);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        if(ligneResult != null) {
+            parser = new JSONParser(ligneResult);
+            String status = parser.getStatus();
+            if (!status.isEmpty()) {
+                if(status.equalsIgnoreCase("Success")) {
+                    JSONArray ligueArray = parser.getList("Equipes");
+                    System.out.print("DataBaseFront.getListEquipes() ligueArray  = " + ligueArray + "\n\n");
+                    System.out.flush();
+                    if (ligueArray != null) {
+                        liste = new ArrayList<Equipe>();
+                        for (int index = 0; index < ligueArray.length(); index++) {
+                            try {
+                                JSONObject jsonObject = ligueArray.getJSONObject(index);
+                                Equipe equipe = new Equipe(jsonObject.getInt("id"),
+                                        idLigue,
+                                        jsonObject.getString("nom"));
+                                liste.add(equipe);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 }
             }
@@ -282,19 +297,21 @@ public class DbAccessRemote extends DbAccess{
         if(ligneResult != null) {
             parser = new JSONParser(ligneResult);
             String status = parser.getStatus();
-            if (status.equalsIgnoreCase("Success")) {
-                JSONArray joueurArray = parser.getList("Gestionnaires");
-                if (joueurArray != null) {
-                    liste = new ArrayList<Joueur>();
-                    for (int index = 0; index < joueurArray.length(); index++) {
-                        try {
-                            JSONObject jsonObject = joueurArray.getJSONObject(index);
-                            Joueur joueur = new Joueur(jsonObject.getInt("id"),
-                                    jsonObject.getString("nom"),
-                                    jsonObject.getString("prenom"), 0);
-                            liste.add(joueur);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+            if (!status.isEmpty()) {
+                if (status.equalsIgnoreCase("Success")) {
+                    JSONArray joueurArray = parser.getList("Gestionnaires");
+                    if (joueurArray != null) {
+                        liste = new ArrayList<Joueur>();
+                        for (int index = 0; index < joueurArray.length(); index++) {
+                            try {
+                                JSONObject jsonObject = joueurArray.getJSONObject(index);
+                                Joueur joueur = new Joueur(jsonObject.getInt("id"),
+                                        jsonObject.getString("nom"),
+                                        jsonObject.getString("prenom"), 0);
+                                liste.add(joueur);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
@@ -312,21 +329,25 @@ public class DbAccessRemote extends DbAccess{
         sendRequest(pairs);
         while(parsingComplete == false);
 
-        parser =  new JSONParser(ligneResult);
-        String status = parser.getStatus();
-        if(status.equalsIgnoreCase("Success")) {
-            JSONArray ligueArray = parser.getList("Ligues");
-            if (ligueArray != null) {
-                liste = new ArrayList<Ligue>();
-                for (int index = 0; index < ligueArray.length(); index++) {
-                    try {
-                        JSONObject jsonObject = ligueArray.getJSONObject(index);
-                        Ligue ligue = new Ligue(jsonObject.getInt("id"),
-                                jsonObject.getString("nom")/*,
-                                                    jsonObject.getInt("idOwnder")*/);
-                        liste.add(ligue);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        if(ligneResult != null) {
+            parser = new JSONParser(ligneResult);
+            String status = parser.getStatus();
+            if (!status.isEmpty()) {
+                if (status.equalsIgnoreCase("Success")) {
+                    JSONArray ligueArray = parser.getList("Ligues");
+                    if (ligueArray != null) {
+                        liste = new ArrayList<Ligue>();
+                        for (int index = 0; index < ligueArray.length(); index++) {
+                            try {
+                                JSONObject jsonObject = ligueArray.getJSONObject(index);
+                                Ligue ligue = new Ligue(jsonObject.getInt("id"),
+                                        jsonObject.getString("nom")/*,
+                                                            jsonObject.getInt("idOwnder")*/);
+                                liste.add(ligue);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 }
             }
@@ -347,75 +368,102 @@ public class DbAccessRemote extends DbAccess{
         sendRequest(pairs);
         while(parsingComplete == false);
 
-        parser =  new JSONParser(ligneResult);
-        System.out.print("DbAccessRemote validateLogin ...(?)");
-        System.out.flush();
-        String status = parser.getStatus();
-        System.out.print("DbAccessRemote validateLogin -- " + status + " !!");
-        System.out.flush();
-        if(status.equalsIgnoreCase("Success")) {
-
-
-            JSONObject personObject = parser.getJSONObject("personne");
-            System.out.print("DbAccessRemote validateLogin - personArray : "+ personObject +" !!\n\n");
+        if(ligneResult != null) {
+            parser = new JSONParser(ligneResult);
+            System.out.print("DbAccessRemote validateLogin ...(?)");
             System.out.flush();
-            if(personObject != null) {
-                try {
-                    int logId = personObject.getInt("id");
-                    String nom = personObject.getString("nom");
-                    String prenom = personObject.getString("prenom");
-                    lObj  = new LoginObject(logId, nom, prenom);
+            String status = parser.getStatus();
+            System.out.print("DbAccessRemote validateLogin -- " + status + " !!");
+            System.out.flush();
+            if (!status.isEmpty()) {
+                if (status.equalsIgnoreCase("Success")) {
 
-                    System.out.print("DbAccessRemote validateLogin - LoginObject : "+ lObj +" !!\n\n");
+
+                    JSONObject personObject = parser.getJSONObject("personne");
+                    System.out.print("DbAccessRemote validateLogin - personArray : " + personObject + " !!\n\n");
                     System.out.flush();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            JSONArray ligueArray = parser.getList("competence");
-            if (ligueArray != null) {
-                liste = new ArrayList<Competence>();
-                for (int index = 0; index < ligueArray.length(); index++) {
-                    try {
-                        JSONObject jsonObject = ligueArray.getJSONObject(index);
-                        String comp = jsonObject.getString("competenceValue");
-                        String sousLigue = jsonObject.getString("sous-ligue");
-                        String equipe = jsonObject.getString("equipe");
-                        int idLigue=jsonObject.getInt("ligue");
-                        int idSousLigue=-1;
-                        int idEquipe = -1;
-                        int typeComp = 0;//Competence.competenceType.NO_COMPETENCE;
-                        switch(comp){
-                            case "Gestionnaire":
-                                typeComp=1;//Competence.competenceType.GESTIONNAIRE;
-                                break;
-                            case "Capitaine":
-                                typeComp=2;//Competence.competenceType.CAPITAINE;
-                                break;
-                            case "Marqueur":
-                                typeComp=3;//Competence.competenceType.MARQUEUR;
-                                break;
+                    if (personObject != null) {
+                        try {
+                            int logId = personObject.getInt("id");
+                            String nom = personObject.getString("nom");
+                            String prenom = personObject.getString("prenom");
+                            lObj = new LoginObject(logId, nom, prenom);
+
+                            System.out.print("DbAccessRemote validateLogin - LoginObject : " + lObj + " !!\n\n");
+                            System.out.flush();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                        System.out.print("DbAccessRemote validateLogin equipe : " + equipe + ", sousLigue : " + sousLigue + " !!");
-                        System.out.flush();
-                        if(!equipe.isEmpty()){
-                            idEquipe = Integer.parseInt(equipe);
-                        }
-                        if(!sousLigue.isEmpty())
-                            idSousLigue = Integer.parseInt(sousLigue);
-                        Competence competence = new Competence(jsonObject.getInt("id"),
-                                idLigue, idSousLigue, idEquipe, typeComp);
-                        liste.add(competence);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
+                    JSONArray ligueArray = parser.getList("competence");
+                    if (ligueArray != null) {
+                        liste = new ArrayList<Competence>();
+                        for (int index = 0; index < ligueArray.length(); index++) {
+                            try {
+                                JSONObject jsonObject = ligueArray.getJSONObject(index);
+                                String comp = jsonObject.getString("competenceValue");
+                                String sousLigue = jsonObject.getString("sous-ligue");
+                                String equipe = jsonObject.getString("equipe");
+                                int idLigue = jsonObject.getInt("ligue");
+                                int idSousLigue = -1;
+                                int idEquipe = -1;
+                                int typeComp = 0;//Competence.competenceType.NO_COMPETENCE;
+                                switch (comp) {
+                                    case "Gestionnaire":
+                                        typeComp = 1;//Competence.competenceType.GESTIONNAIRE;
+                                        break;
+                                    case "Capitaine":
+                                        typeComp = 2;//Competence.competenceType.CAPITAINE;
+                                        break;
+                                    case "Marqueur":
+                                        typeComp = 3;//Competence.competenceType.MARQUEUR;
+                                        break;
+                                }
+                                System.out.print("DbAccessRemote validateLogin equipe : " + equipe + ", sousLigue : " + sousLigue + " !!");
+                                System.out.flush();
+                                if (!equipe.isEmpty()) {
+                                    idEquipe = Integer.parseInt(equipe);
+                                }
+                                if (!sousLigue.isEmpty())
+                                    idSousLigue = Integer.parseInt(sousLigue);
+                                Competence competence = new Competence(jsonObject.getInt("id"),
+                                        idLigue, idSousLigue, idEquipe, typeComp);
+                                liste.add(competence);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+                if (lObj != null)
+                    lObj.setCompetences(liste);
+            }
+        }
+        return lObj;
+    }
+
+    public int ecritEvenement(Evenement e){
+        int newIdx = -1;
+        ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("action", "newEvent"));
+        pairs.add(new BasicNameValuePair("idBut", ""+e.getIdBut()));
+        pairs.add(new BasicNameValuePair("idPasse", ""+e.getIdPasse()));
+        pairs.add(new BasicNameValuePair("idPartie", ""+e.getIdPartie()));
+        pairs.add(new BasicNameValuePair("idPenalite", ""+e.getIdPenalite()));
+        pairs.add(new BasicNameValuePair("idLancer", ""+e.getIdLancer()));
+        sendRequest(pairs);
+        while(parsingComplete == false);
+
+        if(ligneResult != null) {
+            parser = new JSONParser(ligneResult);
+            String status = parser.getStatus();
+            if (!status.isEmpty()) {
+                if (status.equalsIgnoreCase("Success")) {
+                    newIdx = parser.getIndex();
                 }
             }
         }
-        if(lObj != null)
-            lObj.setCompetences(liste);
-
-        return lObj;
+        return newIdx;
     }
 
 
