@@ -31,8 +31,10 @@
                 android:value="com.example.thierry.projetaec.MainActivity" />
         </activity>
         <activity android:name=".ListEquipe" />
-        <activity android:name=".ListeLigue"></activity>
+        <activity android:name=".ListeLigue" />
         <activity android:name=".Interfaces.Team1VsTeam2" />
+        <activity android:name=".Stats"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

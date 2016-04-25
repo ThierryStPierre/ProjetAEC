@@ -63,7 +63,7 @@ public class LoginObject implements Parcelable {
         dest.writeInt(loginId);
         dest.writeString(nom);
         dest.writeString(prenom);
-        dest.writeList(competences);
+       // dest.writeList(competences);
     }
     public static final Parcelable.Creator<LoginObject> CREATOR
             = new Parcelable.Creator<LoginObject>(){
@@ -82,7 +82,7 @@ public class LoginObject implements Parcelable {
         loginId = in.readInt();
         nom = in.readString();
         prenom = in.readString();
-//        competences = new ArrayList<Competence>();
+        competences = new ArrayList<Competence>();
         competences = in.readArrayList(Competence.class.getClassLoader());
     }
 }

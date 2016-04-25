@@ -22,7 +22,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 // Main Activity  -- ceci est un commentaire pour valider l'échange GitHub 
-private Button bouttonPartie;
+    private Button bouttonPartie;
+    private Button bouttonStats;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,14 @@ private Button bouttonPartie;
                 login();
              /*  Intent i = new Intent(MainActivity.this, ListeLigue.class);
                 startActivity(i);*/
+            }
+        });
+        bouttonStats = (Button)findViewById(R.id.btnStats);
+        bouttonStats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i  = new Intent(MainActivity.this, Stats.class);
+                startActivity(i);
             }
         });
 
@@ -99,7 +108,7 @@ private Button bouttonPartie;
                     LoginObject utilisateur = dbFront.validateLogin(username, password);
                     Intent i = new Intent(MainActivity.this, ListeLigue.class);
 
-                    i.putExtra("LOGIN", utilisateur);
+                    i.putExtra("LOGIN", utilisateur.getLoginId());
 
                     startActivity(i);
 

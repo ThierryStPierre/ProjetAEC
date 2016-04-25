@@ -34,6 +34,7 @@ public class ListEquipe extends AppCompatActivity {
     private ArrayList<String> checkedItems;
     private List<Equipe> listEquipe;
     private ListAdapter adapter;
+    private int idLogin;
 
     private static int id_Ligue;
     @Override
@@ -93,6 +94,7 @@ public class ListEquipe extends AppCompatActivity {
                 Bundle b = new Bundle();
                 Intent i = new Intent(ListEquipe.this, Team1VsTeam2.class);
 
+                i.putExtra("LOGIN", getIdLogin());
                 i.putExtra("ID_EQUIPE", selectedItems);
 
                 startActivity(i);
@@ -135,6 +137,12 @@ public class ListEquipe extends AppCompatActivity {
       //  int idLigue = i.getIntExtra("ID_LIGUE",id_Ligue);
         Bundle b = getIntent().getExtras();
         int idLigue = b.getInt("ID_LIGUE", -1);
+        return idLigue;
+    }
+    public int getIdLogin(){
+        Intent i = new Intent();
+        Bundle b = getIntent().getExtras();
+        int idLigue = b.getInt("LOGIN", -1);
         return idLigue;
     }
 

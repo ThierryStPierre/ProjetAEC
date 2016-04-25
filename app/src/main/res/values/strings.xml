@@ -10,4 +10,8 @@
     <string name="game">Game</string>
     <string name="selectall">All / None</string>
     <string name="save">Save</string>
+
+    <string name="title_activity_stats">Stats</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
