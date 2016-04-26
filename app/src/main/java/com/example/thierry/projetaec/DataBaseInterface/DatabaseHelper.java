@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 //Création des tables
-        String sql = "CREATE TABLE IF NOT EXISTS Partie (" +
+/*        String sql = "CREATE TABLE IF NOT EXISTS Partie (" +
                 "ID_Partie INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "Lieu TEXT, " +
                 "Duree Integer, " +
@@ -45,25 +45,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "Prenom text)";
         db.execSQL(sql);
 
-/*        sql = "CREATE TABLE IF NOT EXISTS Joueur (" +
-                "ID_Joueur INTEGER" +
-                "ID_Personne INTEGER" +
+        sql = "CREATE TABLE IF NOT EXISTS Joueur (" +
+                "ID_Personne INTEGER," +
                 "Nom text, " +
-                "Prenom text," +
-                "Capitaine INTEGER )";
-        db.execSQL(sql);*/
+                "Prenom text,"+
+                "NumeroChandail INTEGER,"+
+                "ID_Equipe INTEGER)";
+        db.execSQL(sql);
+
+        sql = "CREATE TABLE IF NOT EXISTS Ligue (" +
+                "ID_Ligue INTEGER," +
+                "ID_Personne INTEGER," +
+                "Nom_Ligue text)";
+        db.execSQL(sql);
+
+        sql = "CREATE TABLE IF NOT EXISTS Competence (" +
+                "ID_Personne INTEGER," +
+                "ID_Ligue INTEGER," +
+                "ID_SousLigue INTEGER," +
+                "ID_Equipe INTEGER," +
+                "ID_Saison INTEGER," +
+                "competence INTEGER)";
+        db.execSQL(sql);
+
         sql = "CREATE TABLE IF NOT EXISTS Evenement(" +
                 "ID_PersonneBut INTEGER," +
                 "ID_PersonnePasse INTEGER," +
                 "ID_Partie INTEGER NOT NULL," +
                 "ID_PersonnePenalite INTEGER," +
                 "ID_PersonneTire INTEGER)";
-        db.execSQL(sql);
+        db.execSQL(sql);*/
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS contacts");
+        db.execSQL("DROP TABLE IF EXISTS Partie");
+        db.execSQL("DROP TABLE IF EXISTS Alignement");
+        db.execSQL("DROP TABLE IF EXISTS Equipe");
+        db.execSQL("DROP TABLE IF EXISTS Personne");
+        db.execSQL("DROP TABLE IF EXISTS Evenement");
+        db.execSQL("DROP TABLE IF EXISTS Ligue");
+        db.execSQL("DROP TABLE IF EXISTS Competence");
         onCreate(db);
     }
 }

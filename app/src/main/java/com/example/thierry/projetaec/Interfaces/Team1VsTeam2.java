@@ -30,7 +30,7 @@ public class Team1VsTeam2 extends AppCompatActivity {
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private DataBaseFront dbFront;
-    private List<Joueur> listJoueurs;
+    private ArrayList<Joueur> listJoueurs;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class Team1VsTeam2 extends AppCompatActivity {
     }
     //Chercher dans la base de données les informations des joueurs
     public void setListEquipeFromDb(ArrayList<String> idEquipe) {
-        listJoueurs = new ArrayList<>();
+//        listJoueurs = new ArrayList<>();
         int equipe2 = 2;
         listJoueurs = dbFront.getListJoueursParEquipe(equipe2);
 
@@ -86,20 +86,24 @@ public class Team1VsTeam2 extends AppCompatActivity {
         @Override
        // Insert les 2 fragments dans cette vue
         public Fragment getItem(int position) {
-            if (position == 0) {
-                String test2 = listJoueurs.get(0).toString();
-                System.out.println(listJoueurs.get(0).getPrenom());
+                Fragment team = null;
                 ArrayList<Joueur> newone = new ArrayList<>(listJoueurs);
                 Bundle bundle = new Bundle();
-                bundle.putStringArrayList("myList", listJoueurs);
+                System.out.print("Team1VsTeam2 ScreenSlidePagerAdapter  listJoueur = " + listJoueurs + "\n\n");
+                System.out.flush();
+//                bundle.putArrayList("myList", listJoueurs);
+                bundle.putParcelableArrayList("myList", listJoueurs);
                 Fragment fragment = new Fragment_team();
 
-                fragment.setArguments(bundle);
-                return new Fragment_team();
-            }
+            if (position == 0)
+                team = new Fragment_team();
             else
-                return new Fragment_team2();
+                team = new Fragment_team2();
+            team.setArguments(bundle);
+
+            return team;
         }
+
         @Override public int getCount() {
             return NUM_PAGES;
         }

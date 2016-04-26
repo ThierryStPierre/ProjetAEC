@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import java.util.ArrayList;
 
+import com.example.thierry.projetaec.Objets.Joueur;
+
+import java.util.ArrayList;
 
 /**
  * Created by daniel on 16-04-15.
@@ -39,6 +41,10 @@ public void Fragment_team(){
             btnAllNone = (Button) view.findViewById(R.id.btncheckall);
             btnAllNone.setOnClickListener(this);
 
+            Bundle bndl = getArguments();
+        ArrayList<Joueur> listeJoueurs = bndl.getParcelableArrayList("myList");
+        System.out.print("Fragment_team  listJoueur = " + listeJoueurs + "\n\n");
+        System.out.flush();
             for (int j = 0; j < howManyPlayer; j ++){
                 btn.add((CheckBox)view.findViewById(tableBtn[j]));
                 btn.get(j).setVisibility(View.VISIBLE);

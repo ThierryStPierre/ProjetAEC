@@ -19,6 +19,7 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +28,8 @@ import java.util.List;
 
 public class DataBaseFront extends DbAccess {
     DbAccess dba = null;
+    DbAccessSqlite dbaLite = null;
+    DbAccessRemote dbaRemote = null;
 
     private Context parentContext = null;
     private boolean workLocaly = true;
@@ -40,10 +43,14 @@ public class DataBaseFront extends DbAccess {
                 workLocaly = false;
         }
 
+/*        dbaLite = new DbAccessSqlite(parentContext);
+        dbaRemote = new DbAccessRemote(parentContext);
+        dbaRemote.setLocalBackUp(dbaLite);*/
+
         if(workLocaly)
-            dba = new DbAccessSqlite(parentContext);
+            dba = new DbAccessSqlite(parentContext);//dbaLite;
         else
-            dba = new DbAccessRemote(parentContext);
+            dba = new DbAccessRemote(parentContext);//dbaRemote;
     }
 
     private boolean isOnline()
@@ -90,7 +97,7 @@ public class DataBaseFront extends DbAccess {
     }
 
     @Override
-    public List<Joueur> getListJoueursParEquipe(int idEquipe/*, int idSaison*/) {
+    public ArrayList<Joueur> getListJoueursParEquipe(int idEquipe/*, int idSaison*/) {
         return dba.getListJoueursParEquipe(idEquipe/*, idSaison*/);
     }
 

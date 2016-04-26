@@ -10,7 +10,7 @@ import java.sql.Date;
  */
 public class Joueur implements Parcelable{
     private int idJoueur;
-//    private int idEquipe;
+    private int idEquipe;
     private String nom;
     private String prenom;
     private Date dateNaissance;
@@ -18,11 +18,11 @@ public class Joueur implements Parcelable{
     private String courriel;
     private int numeroChandail;
 
-    public Joueur(int idJoueur, /*int idEquipe,*/ String nom, String prenom, int numeroChandail){
-        this(idJoueur, nom, prenom, null, "", "", numeroChandail);
+    public Joueur(int idJoueur, int idEquipe, String nom, String prenom, int numeroChandail){
+        this(idJoueur, idEquipe, nom, prenom, null, "", "", numeroChandail);
     }
 
-    public Joueur(int idJoueur, /*int idEquipe,*/ String nom, String prenom, Date dateNaissance,
+    public Joueur(int idJoueur, int idEquipe, String nom, String prenom, Date dateNaissance,
                   String telephone, String courriel, int numeroChandail) {
         this.idJoueur = idJoueur;
 //        this.idEquipe = idEquipe;
@@ -38,7 +38,7 @@ public class Joueur implements Parcelable{
     public String toString() {
         return "Joueur{" +
                 "idJoueur=" + idJoueur +
-//                ", idEquipe=" + idEquipe +
+                ", idEquipe=" + idEquipe +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", dateNaissance=" + dateNaissance +
@@ -54,14 +54,14 @@ public class Joueur implements Parcelable{
     public void setIdJoueur(int idJoueur) {
         this.idJoueur = idJoueur;
     }
-/*
+
     public int getIdEquipe() {
         return idEquipe;
     }
 
     public void setIdEquipe(int idEquipe) {
         this.idEquipe = idEquipe;
-    }*/
+    }
 
     public String getNom() {
         return nom;
@@ -114,6 +114,7 @@ public class Joueur implements Parcelable{
     public Joueur(Parcel in){
         this.nom = in.readString();
         this.prenom = in.readString();
+        this.idEquipe = in.readInt();
         this.dateNaissance = new Date(in.readLong());
         this.telephone = in.readString();
         this.courriel = in.readString();
@@ -130,6 +131,7 @@ public class Joueur implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(nom);
         dest.writeString(prenom);
+        dest.writeInt(idEquipe);
         dest.writeLong(dateNaissance.getTime());
         dest.writeString(telephone);
         dest.writeString(courriel);

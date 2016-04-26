@@ -1,5 +1,6 @@
 package com.example.thierry.projetaec.DataBaseInterface;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -10,6 +11,7 @@ import com.example.thierry.projetaec.Objets.Joueur;
 import com.example.thierry.projetaec.Objets.Ligue;
 import com.example.thierry.projetaec.Objets.LoginObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,7 +32,7 @@ public class DbAccessSqlite extends DbAccess{
     }
 
     @Override
-    public List<Joueur> getListJoueursParEquipe(int idEquipe/*, int idSaison*/) {
+    public ArrayList<Joueur> getListJoueursParEquipe(int idEquipe/*, int idSaison*/) {
         return null;
     }
 
@@ -66,5 +68,15 @@ public class DbAccessSqlite extends DbAccess{
 
     public int ecritEvenement(Evenement e){
         return 0;
+    }
+
+    public void saveJoueur(Joueur joueur){
+        ContentValues values = new ContentValues();
+        values.put("ID_Personne", joueur.getIdJoueur());
+        values.put("Nom", joueur.getNom());
+        values.put("Prenom", joueur.getPrenom());
+        values.put("ID_Equipe", joueur.getIdJoueur());
+        values.put("NumeroChandail", joueur.getNumeroChandail());
+        db.insert("Personne", null, values);
     }
 }
