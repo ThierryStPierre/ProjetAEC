@@ -184,15 +184,11 @@ public class DbAccessRemote extends DbAccess{
             parser = new JSONParser(ligneResult);
             String status = parser.getStatus();
             if (!status.isEmpty()) {
-                System.out.println("salut Men1");
                 if(status.equalsIgnoreCase("Success")) {
-                    System.out.println("salut men2");
                     JSONArray joueurArray = parser.getList("Alignement");
-                    if (joueurArray != null) {
-                        System.out.println("salut men3");
+                    if (joueurArray != null) {;
                         liste = new ArrayList<Joueur>();
                         for (int index = 0; index < joueurArray.length(); index++) {
-                            System.out.println("salut men4");
                             try {
                                 JSONObject jsonObject = joueurArray.getJSONObject(index);
                                 Joueur joueur = new Joueur(jsonObject.getInt("id"),
@@ -201,7 +197,6 @@ public class DbAccessRemote extends DbAccess{
                                         jsonObject.getString("prenom"),
                                         jsonObject.getInt("numeroChandail"));
                                 liste.add(joueur);
-                                System.out.println("salut men5");
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

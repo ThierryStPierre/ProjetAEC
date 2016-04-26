@@ -45,9 +45,11 @@ public class MainActivity extends AppCompatActivity {
         bouttonPartie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login();
-             /*  Intent i = new Intent(MainActivity.this, ListeLigue.class);
-                startActivity(i);*/
+                //login();
+                String utilisateur = "1";
+                Intent i = new Intent(MainActivity.this, ListeLigue.class);
+                i.putExtra("LOGIN", utilisateur);
+                startActivity(i);
             }
         });
         bouttonStats = (Button)findViewById(R.id.btnStats);
@@ -102,16 +104,17 @@ public class MainActivity extends AppCompatActivity {
                 String password = txtLoginPassword.getText().toString();
 
                 DataBaseFront dbFront = new DataBaseFront(MainActivity.this);
-
-                if (dbFront.validateLogin(username, password) != null){//Vérification du mot de pass
+                Intent i = new Intent(MainActivity.this, ListeLigue.class);
+                startActivity(i);
+                if (dbFront.validateLogin(username, password) != null) {//Vérification du mot de pass
 
                     LoginObject utilisateur = dbFront.validateLogin(username, password);
-                    Intent i = new Intent(MainActivity.this, ListeLigue.class);
+                    /*Intent i = new Intent(MainActivity.this, ListeLigue.class);
 
                     i.putExtra("LOGIN", utilisateur.getLoginId());
 
                     startActivity(i);
-
+*/
                 } else {//Échec a la vérification
                     Toast.makeText(MainActivity.this, "Erreur dans le nom ou mot de passe",
                             Toast.LENGTH_SHORT).show();

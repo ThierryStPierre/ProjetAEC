@@ -42,9 +42,11 @@ public class ListeLigue extends AppCompatActivity {
         dbFront = new DataBaseFront(this);//CONNECTION A LA DB
 
         listViewLigue = (ListView) findViewById(R.id.listViewLigue);
-        //currentUser = getUser();
+        currentUser = getUser();
+        //System.out.print( "\n\n\n\n\n\n\n\n--------------------------------------------------"+currentUser.getPrenom());
 
-        setListLigueFromDb(getIdGestionnaire());  // Injection de l'ID GESTIONNAIRE <------==
+        setListLigueFromDb(1);  // Injection de l'ID GESTIONNAIRE <------==
+        System.out.println(currentUser + "\n\n\n");
 
         listViewLigue.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -88,23 +90,21 @@ public class ListeLigue extends AppCompatActivity {
     public void sendId(int idLigue) {
         Intent i = new Intent(ListeLigue.this, ListEquipe.class);
         i.putExtra("ID_LIGUE", idLigue);
-        i.putExtra("LOGIN", getIdGestionnaire());
+        i.putExtra("LOGIN", currentUser);
         startActivity(i);
     }
 
-    public int getIdGestionnaire() {
+    /*public int getIdGestionnaire() {
         Intent i = new Intent();
         Bundle b = getIntent().getExtras();
-        int id = b.getInt("LOGIN", -1);
+        int id = b.getInt("LOGIN", 1);
         return id;
-    }
+    }*/
 
     public LoginObject getUser() {
         Intent i = new Intent();
         Bundle b = getIntent().getExtras();
         LoginObject user = b.getParcelable("LOGIN");
-        System.out.println(user+"\n\n\n\n");
         return user;
     }
-
 }

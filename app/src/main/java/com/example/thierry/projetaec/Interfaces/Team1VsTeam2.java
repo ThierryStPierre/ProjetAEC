@@ -55,11 +55,10 @@ public class Team1VsTeam2 extends AppCompatActivity {
     }
     //Chercher dans la base de données les informations des joueurs
     public void setListEquipeFromDb(ArrayList<String> idEquipe) {
+        listJoueurs = new ArrayList<>();
         int equipe2 = 2;
-
         listJoueurs = dbFront.getListJoueursParEquipe(equipe2);
-        String test2 = listJoueurs.get(0).toString();
-        Toast.makeText(Team1VsTeam2.this, test2, Toast.LENGTH_SHORT).show();
+
 
     }
     //Charger les joueurs de chaque equipe
@@ -71,6 +70,7 @@ public class Team1VsTeam2 extends AppCompatActivity {
     }
     //Chercher les id des équipes choisies de l'interface ListEquipe
     public ArrayList<String> getIdEquipe(){
+        //  int idLigue = i.getIntExtra("ID_LIGUE",id_Ligue);
         Intent i = new Intent();
         Bundle b = getIntent().getExtras();
         ArrayList<String> idEquipe = b.getStringArrayList("ID_EQUIPE");
@@ -88,18 +88,13 @@ public class Team1VsTeam2 extends AppCompatActivity {
         public Fragment getItem(int position) {
             if (position == 0) {
                 String test2 = listJoueurs.get(0).toString();
-                System.out.println(listJoueurs.get(0).toString());
+                System.out.println(listJoueurs.get(0).getPrenom());
                 ArrayList<Joueur> newone = new ArrayList<>(listJoueurs);
                 Bundle bundle = new Bundle();
-                //bundle.putarr("myList", newone);
-
+                bundle.putStringArrayList("myList", listJoueurs);
                 Fragment fragment = new Fragment_team();
+
                 fragment.setArguments(bundle);
-                //Toast.makeText(Team1VsTeam2.this, test2, Toast.LENGTH_SHORT).show();
-                /*Fragment fragment = new Fragment();
-                Bundle bundle = new Bundle();
-                bundle.putString(key, value);
-                fragment.setArguments(bundle);*/
                 return new Fragment_team();
             }
             else

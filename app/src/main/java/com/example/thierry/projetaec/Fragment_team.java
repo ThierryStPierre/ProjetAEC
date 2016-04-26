@@ -1,19 +1,14 @@
 package com.example.thierry.projetaec;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-
-import com.example.thierry.projetaec.Interfaces.Team1VsTeam2;
-import com.example.thierry.projetaec.Objets.Joueur;
-
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Created by daniel on 16-04-15.
@@ -30,7 +25,7 @@ public class Fragment_team extends Fragment implements View.OnClickListener{
     private boolean allSelect = false;
 View view;
 
-public void Fragment_team(List<Joueur> listJoueur){
+public void Fragment_team(){
 
     }
     @Override
@@ -47,7 +42,7 @@ public void Fragment_team(List<Joueur> listJoueur){
             for (int j = 0; j < howManyPlayer; j ++){
                 btn.add((CheckBox)view.findViewById(tableBtn[j]));
                 btn.get(j).setVisibility(View.VISIBLE);
-                btn.get(j).setText(("4"));
+                //btn.get(j).setText((listJoueurs.get(j).getNumero));
                 btn.get(j).setOnClickListener(this);
         }
             return view;

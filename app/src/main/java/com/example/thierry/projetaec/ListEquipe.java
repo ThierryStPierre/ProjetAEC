@@ -94,7 +94,7 @@ public class ListEquipe extends AppCompatActivity {
                 Bundle b = new Bundle();
                 Intent i = new Intent(ListEquipe.this, Team1VsTeam2.class);
 
-                i.putExtra("LOGIN", getIdLogin());
+                //i.putExtra("LOGIN", getIdLogin());
                 i.putExtra("ID_EQUIPE", selectedItems);
 
                 startActivity(i);
