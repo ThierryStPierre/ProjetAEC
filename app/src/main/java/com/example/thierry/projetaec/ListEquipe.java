@@ -91,16 +91,21 @@ public class ListEquipe extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle b = new Bundle();
-                Intent i = new Intent(ListEquipe.this, Team1VsTeam2.class);
+                if (checkedItems.size() == 2) {
+                    Bundle b = new Bundle();
+                    Intent i = new Intent(ListEquipe.this, Team1VsTeam2.class);
 
-                //i.putExtra("LOGIN", getIdLogin());
-                i.putExtra("ID_EQUIPE", selectedItems);
+                    //i.putExtra("LOGIN", getIdLogin());
+                    i.putExtra("ID_EQUIPE", selectedItems);
 
-                startActivity(i);
+                    startActivity(i);
 
-                //Toast.makeText(ListEquipe.this, selectedItems + "", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ListEquipe.this, selectedItems + "", Toast.LENGTH_SHORT).show();
+                }
+                else;
+
             }
+
         });
     }
 

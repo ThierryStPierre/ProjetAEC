@@ -33,22 +33,22 @@ public void Fragment_team(){
     @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             view =  inflater.inflate(R.layout.content_selection_joueurs, container, false);
-            //List<Joueur> localJoueur = Team1VsTeam2.listJoueur;
-
-            howManyPlayer = 10;
             btnSave = (Button) view.findViewById(R.id.btnsave);
             btnSave.setOnClickListener(this);
             btnAllNone = (Button) view.findViewById(R.id.btncheckall);
             btnAllNone.setOnClickListener(this);
 
             Bundle bndl = getArguments();
+
         ArrayList<Joueur> listeJoueurs = bndl.getParcelableArrayList("myList");
         System.out.print("Fragment_team  listJoueur = " + listeJoueurs + "\n\n");
+        howManyPlayer = listeJoueurs.size();
+        System.out.println(howManyPlayer);
         System.out.flush();
-            for (int j = 0; j < howManyPlayer; j ++){
+            for (int j = 0; j < howManyPlayer; j++) {
                 btn.add((CheckBox)view.findViewById(tableBtn[j]));
                 btn.get(j).setVisibility(View.VISIBLE);
-                //btn.get(j).setText((listJoueurs.get(j).getNumero));
+                btn.get(j).setText(listeJoueurs.get(j).getNom());
                 btn.get(j).setOnClickListener(this);
         }
             return view;
@@ -64,14 +64,10 @@ public void Fragment_team(){
 
                 }
                 else{
-                    btn.get(j).setVisibility(View.INVISIBLE);
+                    btn.get(j).setVisibility(View.GONE);
 
                 }
             }
-            /*Bundle b = new Bundle();
-            Intent i = new Intent(Selection_Joueurs.this, Team1VsTeam2.class);
-            Toast.makeText(Selection_Joueurs.this, "Sauvegarde terminé", Toast.LENGTH_SHORT).show();
-            startActivity(i);*/
         }
         else if(checkbox == btnAllNone){
             if (allSelect == false)

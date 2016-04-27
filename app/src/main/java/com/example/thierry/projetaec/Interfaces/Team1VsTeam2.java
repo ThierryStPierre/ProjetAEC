@@ -31,6 +31,7 @@ public class Team1VsTeam2 extends AppCompatActivity {
     private PagerAdapter mPagerAdapter;
     private DataBaseFront dbFront;
     private ArrayList<Joueur> listJoueurs;
+    private ArrayList<Joueur> listJoueurs2;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +57,10 @@ public class Team1VsTeam2 extends AppCompatActivity {
     //Chercher dans la base de données les informations des joueurs
     public void setListEquipeFromDb(ArrayList<String> idEquipe) {
 //        listJoueurs = new ArrayList<>();
-        int equipe2 = 2;
-        listJoueurs = dbFront.getListJoueursParEquipe(equipe2);
+        int equipe1 = Integer.parseInt(idEquipe.get(0));
+        int equipe2 = Integer.parseInt(idEquipe.get(1));
+        listJoueurs = dbFront.getListJoueursParEquipe(equipe1);
+        listJoueurs2 = dbFront.getListJoueursParEquipe(equipe2);
 
 
     }
@@ -86,21 +89,18 @@ public class Team1VsTeam2 extends AppCompatActivity {
         @Override
        // Insert les 2 fragments dans cette vue
         public Fragment getItem(int position) {
-                Fragment team = null;
-                ArrayList<Joueur> newone = new ArrayList<>(listJoueurs);
-                Bundle bundle = new Bundle();
-                System.out.print("Team1VsTeam2 ScreenSlidePagerAdapter  listJoueur = " + listJoueurs + "\n\n");
-                System.out.flush();
-//                bundle.putArrayList("myList", listJoueurs);
+            Fragment team = null;
+            Bundle bundle = new Bundle();
+            if (position == 0) {
                 bundle.putParcelableArrayList("myList", listJoueurs);
-                Fragment fragment = new Fragment_team();
+            }
+            else {
+                bundle.putParcelableArrayList("myList", listJoueurs2);
+            }
 
-            if (position == 0)
-                team = new Fragment_team();
-            else
-                team = new Fragment_team2();
+            Fragment fragment = new Fragment_team();
+            team = new Fragment_team();
             team.setArguments(bundle);
-
             return team;
         }
 
