@@ -79,4 +79,8 @@ public class DbAccessSqlite extends DbAccess{
         values.put("NumeroChandail", joueur.getNumeroChandail());
         db.insert("Personne", null, values);
     }
+
+    public Equipe getEquipeInfo(int idEquipe){
+        return null;
+    }
 }

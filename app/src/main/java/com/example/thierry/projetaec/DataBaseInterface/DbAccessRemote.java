@@ -455,5 +455,35 @@ public class DbAccessRemote extends DbAccess{
         return newIdx;
     }
 
+    public Equipe getEquipeInfo(int idEquipe){
+        Equipe equipe = null;
+        int iEqu = -1, iLi = -1, iSLi = -1;
+        String nom = "";
+        ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
+        pairs.add(new BasicNameValuePair("action", "getEquipeInfo"));
+        pairs.add(new BasicNameValuePair("ID_Equipe", "" + idEquipe));
+        sendRequest(pairs, DbAction.DB_READ);
+        while(parsingComplete == false);
 
+        if(ligneResult != null) {
+            parser = new JSONParser(ligneResult);
+            String status = parser.getStatus();
+            if (!status.isEmpty()) {
+                if(status.equalsIgnoreCase("Success")) {
+                    JSONObject jsonObject = parser.getJSONObject("Equipe");
+                    try{
+                        iEqu = jsonObject.getInt("Id");
+                        iLi = jsonObject.getInt("ligue");
+                        iSLi = jsonObject.getInt("sousLigue");
+                        nom = jsonObject.getString("nom");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    if(iEqu == idEquipe)
+                        equipe = new Equipe(iEqu, iLi, iSLi, nom);
+                }
+            }
+        }
+        return equipe;
+    }
 }
