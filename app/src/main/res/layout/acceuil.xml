@@ -29,7 +29,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageLogo"
+        android:src="@drawable/statscenter"
         android:layout_above="@+id/btnPartie"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="83dp" />
     <Button

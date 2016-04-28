@@ -27,6 +27,8 @@ public class ListEquipe extends AppCompatActivity {
     private ListView listViewEquipe;
     private Button btnConfirm;
     private CheckedTextView checkBox;
+    private TextView txtTeam1;
+    private TextView txtTeam2;
 
     private DataBaseFront dbFront;
 
@@ -35,6 +37,8 @@ public class ListEquipe extends AppCompatActivity {
     private List<Equipe> listEquipe;
     private ListAdapter adapter;
     private int idLogin;
+    private int i;
+
 
     private static int id_Ligue;
     @Override
@@ -45,6 +49,9 @@ public class ListEquipe extends AppCompatActivity {
         selectedItems = new ArrayList<>();
         checkedItems = new ArrayList<>();
         listEquipe = new ArrayList<>();
+        txtTeam1 = (TextView)findViewById(R.id.textTeamt1);
+        txtTeam2 = (TextView)findViewById(R.id.textTeamt2);
+        i = 0;
 
 
 
@@ -67,11 +74,20 @@ public class ListEquipe extends AppCompatActivity {
 
                 CheckedTextView check = ((CheckedTextView) view.findViewById(R.id.txtNomEquipe));
 
+
                 String checkedId = String.valueOf(position);
 
                 if (selectedItems.contains(selectedId)) {  //un-check
                     selectedItems.remove(selectedId);
                     checkedItems.remove(String.valueOf(position));
+
+                        if(txtTeam1.equals(check.getText().toString())){
+                            txtTeam1.setText("");
+                        }
+                        else if(txtTeam2.equals(check.getText().toString())){
+                            txtTeam2.setText("");
+                        }
+
                     check.toggle();
 
                 } else if (checkedItems.size() < 2) { //check
@@ -79,6 +95,16 @@ public class ListEquipe extends AppCompatActivity {
                     checkedItems.add(checkedId);
                     noMoreThan2(selectedItems);
                     // noMoreThan2(checkedItems);
+
+                    if (i == 0){
+                        txtTeam1.setText(check.getText().toString());
+                        i = 2;
+                    }
+                    else if(i == 2) {
+                        txtTeam2.setText(check.getText().toString());
+                        i = 0;
+                    }
+
                     check.toggle();
                     
                 } else if (checkedItems.size() > 2) {
@@ -161,14 +187,7 @@ public class ListEquipe extends AppCompatActivity {
         }
     }
 
-    public String returnPositionToUncheck(ArrayList<String> array){
-        int temp = 0;
-        if(array.size() >= 2){
-            temp = array.size() - 3;
-            array.get(temp);
-        }
-        return array.get(temp);
-    }
+
 
     public LoginObject getUser(){
         Intent i = new Intent();
