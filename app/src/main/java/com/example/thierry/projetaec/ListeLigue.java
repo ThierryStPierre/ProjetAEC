@@ -29,8 +29,6 @@ public class ListeLigue extends AppCompatActivity {
     private List<Ligue> listLigue;
     private LoginObject currentUser;
 
-    private static final int ID_GESTIONNAIRE = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +41,6 @@ public class ListeLigue extends AppCompatActivity {
 
         listViewLigue = (ListView) findViewById(R.id.listViewLigue);
         currentUser = getUser();
-        //System.out.print( "\n\n\n\n\n\n\n\n--------------------------------------------------"+currentUser.getPrenom());
 
         setListLigueFromDb(1);  // Injection de l'ID GESTIONNAIRE <------==
         System.out.println(currentUser + "\n\n\n");
@@ -53,15 +50,14 @@ public class ListeLigue extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedId = Integer.parseInt(
                         ((TextView) view.findViewById(R.id.txtIdLigue)).getText().toString());
-                // Toast.makeText(ListeLigue.this,selectedId+ "", Toast.LENGTH_SHORT).show();
                 sendId(selectedId);
             }
         });
     }
 
     public void setListLigueFromDb(int idGestionnaire) {
-        listLigue = dbFront.getListLigues(idGestionnaire);
-        // listViewLigue.setAdapter(new CustomAdapterLigue(this, dummyList()));
+         listLigue = dbFront.getListLigues(idGestionnaire);
+       // listViewLigue.setAdapter(new CustomAdapterLigue(this, dummyList()));
         listViewLigue.setAdapter(new CustomAdapterLigue(this, listLigue));
     }
 
@@ -94,12 +90,12 @@ public class ListeLigue extends AppCompatActivity {
         startActivity(i);
     }
 
-    /*public int getIdGestionnaire() {
+    public int getIdGestionnaire() {
         Intent i = new Intent();
         Bundle b = getIntent().getExtras();
         int id = b.getInt("LOGIN", 1);
         return id;
-    }*/
+    }
 
     public LoginObject getUser() {
         Intent i = new Intent();
