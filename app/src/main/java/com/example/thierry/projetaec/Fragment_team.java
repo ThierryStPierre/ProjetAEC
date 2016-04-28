@@ -52,7 +52,7 @@ public void Fragment_team(){
         for (int j = 0; j < howManyPlayer; j++) {
             btn.add((CheckBox) view.findViewById(tableBtn[j]));
             btn.get(j).setVisibility(View.VISIBLE);
-            btn.get(j).setText(listeJoueurs.get(j).getNom());
+            btn.get(j).setText("" + listeJoueurs.get(j).getNumeroChandail());
             btn.get(j).setOnClickListener(this);
         }
         return view;
