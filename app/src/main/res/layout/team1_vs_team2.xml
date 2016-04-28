@@ -11,9 +11,25 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.thierry.projetaec.interfaces.Team1VsTeam2"
     >
+
+    <LinearLayout
+        android:id="@+id/buttonBar"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnBut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buts" />
+
+    </LinearLayout>
+
     <android.support.v4.view.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/pager"
+        android:layout_below="@+id/buttonBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>

@@ -54,6 +54,8 @@ public class Team1VsTeam2 extends AppCompatActivity {
 
 
         btnBut = (Button) findViewById(R.id.btnBut);
+        System.out.print("Team1VsTeam2 btnBut = "+ btnBut + "\n\n");
+        System.out.flush();
         btnBut.setOnTouchListener(new MyTouchListener());
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setOffscreenPageLimit(2);
@@ -101,7 +103,7 @@ public class Team1VsTeam2 extends AppCompatActivity {
 
         //MenuItem searchMenuItem = menu.findItem(R.id.action_test2);
         //searchMenuItem.setActionView(sampleActionView);
-btnBut.setOnDragListener(new View.OnDragListener(){
+/*btnBut.setOnDragListener(new View.OnDragListener(){
 
     Drawable enterShape = getResources().getDrawable(R.drawable.boutton_joueur);
     Drawable normalShape = getResources().getDrawable(R.drawable.boutton_joueur_selectionne);
@@ -135,7 +137,7 @@ btnBut.setOnDragListener(new View.OnDragListener(){
     }
 
 });
-
+*/
         return super.onCreateOptionsMenu(menu);
     }
             

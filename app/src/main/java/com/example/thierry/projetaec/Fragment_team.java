@@ -1,13 +1,16 @@
 package com.example.thierry.projetaec;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.thierry.projetaec.Objets.Joueur;
@@ -17,7 +20,7 @@ import java.util.ArrayList;
 /**
  * Created by daniel on 16-04-15.
  */
-public class Fragment_team extends Fragment implements View.OnClickListener{
+public class Fragment_team extends Fragment implements View.OnClickListener, View.OnDragListener{
     private ArrayList<CheckBox> btn = new ArrayList<>();
     private int tableBtn[] = {R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9,
             R.id.btn10, R.id.btn11, R.id.btn12, R.id.btn13, R.id.btn14, R.id.btn15, R.id.btn16, R.id.btn17, R.id.btn18, R.id.btn19,
@@ -54,6 +57,7 @@ public void Fragment_team(){
             btn.get(j).setVisibility(View.VISIBLE);
             btn.get(j).setText("" + listeJoueurs.get(j).getNumeroChandail());
             btn.get(j).setOnClickListener(this);
+            btn.get(j).setOnDragListener(this);
         }
         return view;
     }
@@ -96,4 +100,43 @@ public void Fragment_team(){
 
     }
 
+
+
+    @Override
+    public boolean onDrag(View v, DragEvent event){
+        Drawable enterShape = getResources().getDrawable(R.drawable.boutton_joueur);
+        Drawable normalShape = getResources().getDrawable(R.drawable.boutton_joueur_selectionne);
+        int action = event.getAction();
+        switch (event.getAction()) {
+            case DragEvent.ACTION_DRAG_STARTED:
+                // do nothing
+                break;
+            case DragEvent.ACTION_DRAG_ENTERED:
+                v.setBackgroundDrawable(enterShape);
+                break;
+            case DragEvent.ACTION_DRAG_EXITED:
+                v.setBackgroundDrawable(normalShape);
+                break;
+            case DragEvent.ACTION_DROP:
+                // Dropped, reassign View to ViewGroup
+
+                System.out.print("Fragment_team onDrag() View v = " + v + "\n\n");
+                System.out.flush();
+                View view = (View) event.getLocalState();
+                System.out.print("Fragment_team onDrag() View view = " + view + "\n\n");
+                System.out.flush();
+                ((Button)view).setText(((Button)v).getText().toString());
+//                ViewGroup owner = (ViewGroup) view.getParent();
+//                owner.removeView(view);
+//                LinearLayout container = (LinearLayout) v;
+//                container.addView(view);
+                view.setVisibility(View.VISIBLE);
+                break;
+            case DragEvent.ACTION_DRAG_ENDED:
+                v.setBackgroundDrawable(normalShape);
+            default:
+                break;
+        }
+        return true;
+    }
 }
