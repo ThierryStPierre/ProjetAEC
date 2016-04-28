@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
-        android:id="@+id/mobile_link_action_bar_button"
+        android:id="@+id/action_test2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:src="@drawable/proto_background4"
+        android:src="@drawable/statscenter"
         android:contentDescription="Sample Image"/>
+   
 </LinearLayout>

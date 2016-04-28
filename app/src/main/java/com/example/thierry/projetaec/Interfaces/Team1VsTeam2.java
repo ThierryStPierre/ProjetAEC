@@ -1,5 +1,6 @@
 package com.example.thierry.projetaec.Interfaces;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -44,20 +45,21 @@ public class Team1VsTeam2 extends AppCompatActivity {
     private Button btnBut;
 
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.team1_vs_team2);
-            dbFront = new DataBaseFront(this);//CONNECTION
-            setListEquipeFromDb(getIdEquipe());
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.team1_vs_team2);
+        dbFront = new DataBaseFront(this);//CONNECTION
+        setListEquipeFromDb(getIdEquipe());
 
 
-            btnBut = (Button) findViewById(R.id.action_test);
-            mPager = (ViewPager) findViewById(R.id.pager);
-            mPager.setOffscreenPageLimit(2);
-            mPagerAdapter = new  ScreenSlidePagerAdapter(getSupportFragmentManager());
-            mPager.setAdapter(mPagerAdapter);
-       }
+        btnBut = (Button) findViewById(R.id.btnBut);
+        btnBut.setOnTouchListener(new MyTouchListener());
+        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager.setOffscreenPageLimit(2);
+        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        mPager.setAdapter(mPagerAdapter);
+    }
 
     @Override
     //Permet de changer d'une équipe à une autre en appuyant sur le bouton back
@@ -68,6 +70,7 @@ public class Team1VsTeam2 extends AppCompatActivity {
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
     }
+
     //Chercher dans la base de données les informations des joueurs
     public void setListEquipeFromDb(ArrayList<String> idEquipe) {
         //equipe1 = dbFront.getEquipeInfo(Integer.parseInt(idEquipe.get(0)));
@@ -78,16 +81,28 @@ public class Team1VsTeam2 extends AppCompatActivity {
 
     }
 
+    private final class MyTouchListener implements View.OnTouchListener {
+        public boolean onTouch(View v, MotionEvent event) {
+             if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                 ClipData data = ClipData.newPlainText("","");
+                 View.DragShadowBuilder sb = new View.DragShadowBuilder(v);
+                 v.startDrag(data, sb, v, 0);
+        }
+            return true;
+    }
+}
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         LayoutInflater inflater = (LayoutInflater)this.getApplicationContext().getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
-        View sampleActionView = inflater.inflate(R.layout.test, null);
-        MenuItem searchMenuItem = menu.findItem(R.id.action_test);
-        searchMenuItem.setActionView(sampleActionView);
-sampleActionView.setOnDragListener(new View.OnDragListener(){
+        //View sampleActionView = inflater.inflate(R.layout.test, null);
+
+        //MenuItem searchMenuItem = menu.findItem(R.id.action_test2);
+        //searchMenuItem.setActionView(sampleActionView);
+btnBut.setOnDragListener(new View.OnDragListener(){
+
     Drawable enterShape = getResources().getDrawable(R.drawable.boutton_joueur);
     Drawable normalShape = getResources().getDrawable(R.drawable.boutton_joueur_selectionne);
     public boolean onDrag(View v, DragEvent event){
