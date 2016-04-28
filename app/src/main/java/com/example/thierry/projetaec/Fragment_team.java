@@ -1,12 +1,14 @@
 package com.example.thierry.projetaec;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import com.example.thierry.projetaec.Objets.Joueur;
 
@@ -25,40 +27,44 @@ public class Fragment_team extends Fragment implements View.OnClickListener{
     private Button btnAllNone;
     private int howManyPlayer;
     private boolean allSelect = false;
+    private TextView txtIdEquipe;
+
 View view;
 
 public void Fragment_team(){
 
     }
     @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            view =  inflater.inflate(R.layout.content_selection_joueurs, container, false);
-            btnSave = (Button) view.findViewById(R.id.btnsave);
-            btnSave.setOnClickListener(this);
-            btnAllNone = (Button) view.findViewById(R.id.btncheckall);
-            btnAllNone.setOnClickListener(this);
-
-            Bundle bndl = getArguments();
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view =  inflater.inflate(R.layout.content_selection_joueurs, container, false);
+        btnSave = (Button) view.findViewById(R.id.btnsave);
+        btnSave.setOnClickListener(this);
+        btnAllNone = (Button) view.findViewById(R.id.btncheckall);
+        btnAllNone.setOnClickListener(this);
+        Bundle bndl = getArguments();
         ArrayList<Joueur> listeJoueurs = bndl.getParcelableArrayList("myList");
+
         System.out.print("Fragment_team  listJoueur = " + listeJoueurs + "\n\n");
         howManyPlayer = listeJoueurs.size();
-        System.out.println(howManyPlayer);
+        txtIdEquipe = (TextView) view.findViewById(R.id.idEquipe);
+        txtIdEquipe.setText("");
         System.out.flush();
-            for (int j = 0; j < howManyPlayer; j++) {
-                btn.add((CheckBox)view.findViewById(tableBtn[j]));
-                btn.get(j).setVisibility(View.VISIBLE);
-                btn.get(j).setText(listeJoueurs.get(j).getNom());
-                btn.get(j).setOnClickListener(this);
+        for (int j = 0; j < howManyPlayer; j++) {
+            btn.add((CheckBox) view.findViewById(tableBtn[j]));
+            btn.get(j).setVisibility(View.VISIBLE);
+            btn.get(j).setText(listeJoueurs.get(j).getNom());
+            btn.get(j).setOnClickListener(this);
         }
-            return view;
-        }
+        return view;
+    }
+
 
     @Override
     public void onClick(View v) {
 
         CheckBox checkbox = (CheckBox)v;
         if(checkbox == btnSave){
+
             for (int j = 0; j < howManyPlayer; j ++) {
                 if (btn.get(j).isChecked()) {
 
@@ -82,6 +88,7 @@ public void Fragment_team(){
                 }
         }
         else if(checkbox.isChecked()){
+           // Snackbar.make(view, "Joueur choisie" + v.get(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
             v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur_selectionne));
         }
         else
