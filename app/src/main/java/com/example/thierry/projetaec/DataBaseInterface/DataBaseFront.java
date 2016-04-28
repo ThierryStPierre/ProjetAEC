@@ -127,11 +127,16 @@ public class DataBaseFront extends DbAccess {
     }
 
     @Override
-    public List<Ligue> getListAccreditedLigues(int idMarqueur){
+    public List<Ligue> getListAccreditedLigues(int idMarqueur) {
         return dba.getListAccreditedLigues(idMarqueur);
     }
 
+    @Override
     public int ecritEvenement(Evenement e){
         return dba.ecritEvenement(e);
     }
+
+    @Override
+    public Equipe getEquipeInfo(int idEquipe){return dba.getEquipeInfo(idEquipe);}
+
 }

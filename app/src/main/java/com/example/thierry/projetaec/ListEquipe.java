@@ -51,9 +51,6 @@ public class ListEquipe extends AppCompatActivity {
         listEquipe = new ArrayList<>();
         txtTeam1 = (TextView)findViewById(R.id.textTeamt1);
         txtTeam2 = (TextView)findViewById(R.id.textTeamt2);
-        i = 0;
-
-
 
         dbFront = new DataBaseFront(this);//CONNECTION
 
@@ -74,17 +71,16 @@ public class ListEquipe extends AppCompatActivity {
 
                 CheckedTextView check = ((CheckedTextView) view.findViewById(R.id.txtNomEquipe));
 
-
                 String checkedId = String.valueOf(position);
 
                 if (selectedItems.contains(selectedId)) {  //un-check
                     selectedItems.remove(selectedId);
                     checkedItems.remove(String.valueOf(position));
 
-                        if(txtTeam1.equals(check.getText().toString())){
+                        if(txtTeam1.getText().toString().equals(check.getText().toString())){
                             txtTeam1.setText("");
                         }
-                        else if(txtTeam2.equals(check.getText().toString())){
+                        else if(txtTeam2.getText().toString().equals(check.getText().toString())){
                             txtTeam2.setText("");
                         }
 
@@ -96,13 +92,11 @@ public class ListEquipe extends AppCompatActivity {
                     noMoreThan2(selectedItems);
                     // noMoreThan2(checkedItems);
 
-                    if (i == 0){
+                    if (txtTeam1.getText().toString().equals("")){
                         txtTeam1.setText(check.getText().toString());
-                        i = 2;
                     }
-                    else if(i == 2) {
+                    else if(txtTeam2.getText().toString().equals("")) {
                         txtTeam2.setText(check.getText().toString());
-                        i = 0;
                     }
 
                     check.toggle();

@@ -16,7 +16,8 @@ import java.util.List;
 public  abstract class DbAccess {
 
     abstract public List<Joueur> getListJoueurs();
-    abstract public ArrayList<Joueur> getListJoueursParEquipe(int idEquipe/*, int idSaison*/);
+    abstract public ArrayList<Joueur> getListJoueursParEquipe(int idEquipe);
+    abstract public Equipe getEquipeInfo(int idEquipe);
     abstract public List<Joueur> getListJoueursParLigue(int idLigue);
     abstract public List<Ligue> getListLigues(int idGestionnaire);
     abstract public List<Ligue> getListAccreditedLigues(int idMarqueur);

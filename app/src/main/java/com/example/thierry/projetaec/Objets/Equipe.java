@@ -6,11 +6,17 @@ package com.example.thierry.projetaec.Objets;
 public class Equipe {
     private int idEquipe;
     private int idLigue;
+    private int idSousLigue;
     private String nomEquipe;
 
     public Equipe(int idEquipe, int idLigue, String nomEquipe) {
+        this(idEquipe, idLigue, -1, nomEquipe);
+    }
+
+    public Equipe(int idEquipe, int idLigue, int idSousLigue, String nomEquipe) {
         this.idEquipe = idEquipe;
         this.idLigue = idLigue;
+        this.idSousLigue = idSousLigue;
         this.nomEquipe = nomEquipe;
     }
 
@@ -19,12 +25,21 @@ public class Equipe {
         return "Equipe{" +
                 "idEquipe=" + idEquipe +
                 ", idLigue=" + idLigue +
+                ", idSousLigue=" + idSousLigue +
                 ", nomEquipe='" + nomEquipe + '\'' +
                 '}';
     }
 
     public int getIdEquipe() {
         return idEquipe;
+    }
+
+    public int getIdSousLigue() {
+        return idSousLigue;
+    }
+
+    public void setIdSousLigue(int idSousLigue) {
+        this.idSousLigue = idSousLigue;
     }
 
     public void setIdEquipe(int idEquipe) {
