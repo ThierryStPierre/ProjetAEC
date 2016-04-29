@@ -29,9 +29,6 @@ public class Fragment_team extends Fragment implements View.OnClickListener, Vie
     private Button btnSave;
     private int howManyPlayer;
     private TextView txtIdEquipe;
-    boolean saveButtonIsPresse=false;
-    Drawable normalShape;
-    Drawable enterShape;
 
 
 View view;
@@ -46,8 +43,7 @@ public void Fragment_team(){
         btnSave.setOnClickListener(this);
         Bundle bndl = getArguments();
         ArrayList<Joueur> listeJoueurs = bndl.getParcelableArrayList("myList");
-        normalShape = getResources().getDrawable(R.drawable.boutton_joueur);
-        enterShape = getResources().getDrawable(R.drawable.boutton_joueur_selectionne);
+
         System.out.print("Fragment_team  listJoueur = " + listeJoueurs + "\n\n");
         howManyPlayer = listeJoueurs.size();
         txtIdEquipe = (TextView) view.findViewById(R.id.idEquipe);
@@ -66,41 +62,40 @@ public void Fragment_team(){
 
     @Override
     public void onClick(View v) {
-        CheckBox checkbox = (CheckBox) v;
-        if (checkbox == btnSave) {
 
-            for (int j = 0; j < howManyPlayer; j++) {
+        CheckBox checkbox = (CheckBox)v;
+        if(checkbox == btnSave){
+
+            for (int j = 0; j < howManyPlayer; j ++) {
                 if (btn.get(j).isChecked()) {
-                    btn.get(j).setChecked(false);
-                    btn.get(j).setBackground(getResources().getDrawable(R.drawable.boutton_joueur));
-                } else {
+
+                }
+                else{
                     btn.get(j).setVisibility(View.GONE);
 
                 }
-                saveButtonIsPresse = true;
-                btnSave.setVisibility(View.GONE);
-                v.setBackgroundDrawable(normalShape);
             }
-        } else if (saveButtonIsPresse == false) {
-            if (checkbox.isChecked()) {
-                // Snackbar.make(view, "Joueur choisie" + v.get(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur_selectionne));
-            } else {
-                v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur));
-            }
-
         }
+
+        else if(checkbox.isChecked()){
+           // Snackbar.make(view, "Joueur choisie" + v.get(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur_selectionne));
+        }
+        else
+            v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur));
+
     }
 
 
 
     @Override
     public boolean onDrag(View v, DragEvent event){
-
+        Drawable normalShape = getResources().getDrawable(R.drawable.boutton_joueur);
+        Drawable enterShape = getResources().getDrawable(R.drawable.boutton_joueur_selectionne);
         int action = event.getAction();
         switch (event.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED:
-
+                // do nothing
                 break;
             case DragEvent.ACTION_DRAG_ENTERED:
                 v.setBackgroundDrawable(enterShape);
@@ -116,8 +111,7 @@ public void Fragment_team(){
                 View view = (View) event.getLocalState();
                 System.out.print("Fragment_team onDrag() View view = " + view + "\n\n");
                 System.out.flush();
-                ((Button)view).setText(((Button) v).getText().toString());
-                //v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur_selectionne));
+                ((Button)view).setText(((Button)v).getText().toString());
 //                ViewGroup owner = (ViewGroup) view.getParent();
 //                owner.removeView(view);
 //                LinearLayout container = (LinearLayout) v;
