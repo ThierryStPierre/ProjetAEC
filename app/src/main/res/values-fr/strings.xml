@@ -10,4 +10,7 @@
     <string name="game">Partie</string>
     <string name="selectall">Tout / Rien</string>
     <string name="save">Sauvegarder</string>
+    <string name="penalty">Penalité</string>
+    <string name="assist">Passe</string>
+    <string name="goal">But</string>
 </resources>
