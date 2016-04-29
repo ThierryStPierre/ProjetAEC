@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,8 +44,9 @@ public class Team1VsTeam2 extends AppCompatActivity {
     private ArrayList<Joueur> listJoueurs;
     private ArrayList<Joueur> listJoueurs2;
     private Button btnBut;
+    private ArrayList<Button> btn = new ArrayList<>();
 
-    private final int [] btnList = {R.id.btnBut, R.id.btnPasse, R.id.btnPenalite};
+    private final int [] btnList = {R.id.btnBut, R.id.btnPasse, R.id.btnPenalite, R.id.btnSave2};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,11 @@ public class Team1VsTeam2 extends AppCompatActivity {
 
 
         btnBut = (Button) findViewById(R.id.btnBut);
+        for (int j = 0; j < (btnList.length); j++) {
+            btn.add((Button) findViewById(btnList[j]));
+            btn.get(j).setOnClickListener();
+            btn.get(j).setOnDragListener();
+        }
         System.out.print("Team1VsTeam2 btnBut = "+ btnBut + "\n\n");
         System.out.flush();
         btnBut.setOnTouchListener(new MyTouchListener());
@@ -85,8 +92,10 @@ public class Team1VsTeam2 extends AppCompatActivity {
 
     static int btnClick = 0;
     public static void addClick() {
-        if(++btnClick == 2)
+        if(++btnClick == 2){
             btnSave2.setVisible();
+        }
+
 
     }
     private final class MyTouchListener implements View.OnTouchListener {
