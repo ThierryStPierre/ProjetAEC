@@ -55,7 +55,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -70,7 +70,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -85,7 +85,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -109,7 +109,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -123,7 +123,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -137,7 +137,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -158,7 +158,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -172,7 +172,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -186,7 +186,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -206,7 +206,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -220,7 +220,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -234,7 +234,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -254,7 +254,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -268,7 +268,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -282,7 +282,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -302,7 +302,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -316,7 +316,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -330,7 +330,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -350,7 +350,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -364,7 +364,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -378,7 +378,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -398,7 +398,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -412,7 +412,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -426,7 +426,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -446,7 +446,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -460,7 +460,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -474,7 +474,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -494,7 +494,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -508,7 +508,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -522,7 +522,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -542,7 +542,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -556,7 +556,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -570,7 +570,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -590,7 +590,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -604,7 +604,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
@@ -618,7 +618,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:onClick="onClick"
                     android:background="@drawable/boutton_joueur"
                     />
