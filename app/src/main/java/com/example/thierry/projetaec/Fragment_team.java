@@ -12,9 +12,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.example.thierry.projetaec.Objets.Joueur;
 import com.example.thierry.projetaec.Interfaces.Team1VsTeam2;
+import com.example.thierry.projetaec.Objets.Joueur;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by daniel on 16-04-15.
@@ -32,6 +34,7 @@ public class Fragment_team extends Fragment implements View.OnClickListener, Vie
     Drawable normalShape;
     Drawable enterShape;
     View view;
+    private ArrayList<Joueur> listeJoueurs;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,7 +42,8 @@ public class Fragment_team extends Fragment implements View.OnClickListener, Vie
         btnSave = (Button) view.findViewById(R.id.btnsave);
         btnSave.setOnClickListener(this);
         Bundle bndl = getArguments();
-        ArrayList<Joueur> listeJoueurs = bndl.getParcelableArrayList("myList");
+        listeJoueurs = bndl.getParcelableArrayList("myList");
+
         normalShape = getResources().getDrawable(R.drawable.boutton_joueur);
         enterShape = getResources().getDrawable(R.drawable.boutton_joueur_selectionne);
         System.out.print("Fragment_team  listJoueur = " + listeJoueurs + "\n\n");
@@ -56,7 +60,6 @@ public class Fragment_team extends Fragment implements View.OnClickListener, Vie
         }
         return view;
     }
-
 
     @Override
     public void onClick(View v) {
@@ -84,7 +87,6 @@ public class Fragment_team extends Fragment implements View.OnClickListener, Vie
             } else {
                 v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur));
             }
-
         }
     }
 
@@ -112,8 +114,15 @@ public class Fragment_team extends Fragment implements View.OnClickListener, Vie
                 View view = (View) event.getLocalState();
                 System.out.print("Fragment_team onDrag() View view = " + view + "\n\n");
                 System.out.flush();
-                ((Button)view).setText(((Button) v).getText().toString());
-                //v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur_selectionne));
+                String boutonJouerChandail = ((Button)v).getText().toString();
+                ((Button)view).setText(boutonJouerChandail);
+                int intChandail = Integer.parseInt(boutonJouerChandail);
+                Iterator<Joueur> iter = listeJoueurs.iterator();
+                while(iter.hasNext()){
+                    Joueur joueur = iter.next();
+                    if(joueur.getNumeroChandail() == intChandail)
+                        Team1VsTeam2.setEventAction(joueur, v);
+                }
 //                ViewGroup owner = (ViewGroup) view.getParent();
 //                owner.removeView(view);
 //                LinearLayout container = (LinearLayout) v;

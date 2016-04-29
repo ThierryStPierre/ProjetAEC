@@ -436,7 +436,8 @@ public class DbAccessRemote extends DbAccess{
         ArrayList<NameValuePair> pairs = new ArrayList<NameValuePair>();
         pairs.add(new BasicNameValuePair("action", "newEvent"));
         pairs.add(new BasicNameValuePair("idBut", ""+e.getIdBut()));
-        pairs.add(new BasicNameValuePair("idPasse", ""+e.getIdPasse()));
+        pairs.add(new BasicNameValuePair("idPasse1", ""+e.getIdPasse()));
+        pairs.add(new BasicNameValuePair("idPasse2", "" + -1));
         pairs.add(new BasicNameValuePair("idPartie", "" + e.getIdPartie()));
         pairs.add(new BasicNameValuePair("idPenalite", ""+e.getIdPenalite()));
         pairs.add(new BasicNameValuePair("idLancer", ""+e.getIdLancer()));
