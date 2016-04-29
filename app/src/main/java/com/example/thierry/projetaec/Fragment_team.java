@@ -27,10 +27,9 @@ public class Fragment_team extends Fragment implements View.OnClickListener, Vie
             R.id.btn20, R.id.btn21, R.id.btn22, R.id.btn23, R.id.btn24, R.id.btn25, R.id.btn26, R.id.btn27, R.id.btn28, R.id.btn29,
             R.id.btn30, R.id.btn31, R.id.btn32, R.id.btn33, R.id.btn34, R.id.btn35, R.id.btn36};
     private Button btnSave;
-    private Button btnAllNone;
     private int howManyPlayer;
-    private boolean allSelect = false;
     private TextView txtIdEquipe;
+
 
 View view;
 
@@ -77,18 +76,7 @@ public void Fragment_team(){
                 }
             }
         }
-        else if(checkbox == btnAllNone){
-            if (allSelect == false)
-            for (int j = 0; j < howManyPlayer; j ++){
-                btn.get(j).setBackground(getResources().getDrawable(R.drawable.boutton_joueur_selectionne));
-                allSelect = true;
-            }
-            else
-                for (int j = 0; j < howManyPlayer; j ++) {
-                    btn.get(j).setBackground(getResources().getDrawable(R.drawable.boutton_joueur));
-                    allSelect = false;
-                }
-        }
+
         else if(checkbox.isChecked()){
            // Snackbar.make(view, "Joueur choisie" + v.get(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
             v.setBackground(getResources().getDrawable(R.drawable.boutton_joueur_selectionne));
