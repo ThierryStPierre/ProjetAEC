@@ -45,7 +45,7 @@ public class Team1VsTeam2 extends AppCompatActivity implements View.OnClickListe
     private ArrayList<Joueur> listJoueurs;
     private ArrayList<Joueur> listJoueurs2;
     private Button btnBut;
-    private ArrayList<Button> btn = new ArrayList<>();
+    private static ArrayList<Button> btn = new ArrayList<>();
 
     private static int [] eventStore = new int[3];
     private static final int [] btnList = {R.id.btnBut, R.id.btnPasse, R.id.btnPenalite, R.id.btnSave2};
@@ -63,7 +63,8 @@ public class Team1VsTeam2 extends AppCompatActivity implements View.OnClickListe
             btn.add((Button) findViewById(btnList[j]));
             btn.get(j).setOnTouchListener(new MyTouchListener());
         }
-        btn.get(j).setOnClickListener(this);
+        btn.add((Button) findViewById(btnList[3]));
+        btn.get(3).setOnClickListener(this);
         System.out.print("Team1VsTeam2 btnBut = "+ btnBut + "\n\n");
         System.out.flush();
         btnBut.setOnTouchListener(new MyTouchListener());
@@ -96,7 +97,7 @@ public class Team1VsTeam2 extends AppCompatActivity implements View.OnClickListe
     static int btnClick = 0;
     public static void addClick() {
         if(++btnClick == 2)
-            btn.get(3).setVisible();
+            btn.get(3).setVisibility(View.VISIBLE);
     }
 
     public static void setEventAction(Joueur joueur, View v){
