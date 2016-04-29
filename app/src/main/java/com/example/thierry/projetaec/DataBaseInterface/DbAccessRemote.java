@@ -373,7 +373,7 @@ public class DbAccessRemote extends DbAccess{
                     System.out.flush();
                     if (personObject != null) {
                         try {
-                            int logId = personObject.getInt("id");
+                            int logId = personObject.getInt("Id");
                             String nom = personObject.getString("nom");
                             String prenom = personObject.getString("prenom");
                             lObj = new LoginObject(logId, nom, prenom);

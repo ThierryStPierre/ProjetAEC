@@ -21,7 +21,7 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-// Main Activity  -- ceci est un commentaire pour valider l'échange GitHub 
+
     private Button bouttonPartie;
     private Button bouttonStats;
     @Override
@@ -45,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
         bouttonPartie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //login();
-                String utilisateur = "1";
+                login();
+               /* String utilisateur = "1";
                 Intent i = new Intent(MainActivity.this, ListeLigue.class);
                 i.putExtra("LOGIN", utilisateur);
-                startActivity(i);
+                startActivity(i);*/
             }
         });
         bouttonStats = (Button)findViewById(R.id.btnStats);
@@ -104,21 +104,31 @@ public class MainActivity extends AppCompatActivity {
                 String password = txtLoginPassword.getText().toString();
 
                 DataBaseFront dbFront = new DataBaseFront(MainActivity.this);
-                Intent i = new Intent(MainActivity.this, ListeLigue.class);
-                startActivity(i);
-                if (dbFront.validateLogin(username, password) != null) {//Vérification du mot de pass
+              /*  Intent i = new Intent(MainActivity.this, ListeLigue.class);
+                startActivity(i);*/
+
+
+                if (username.equals("")) {
+                    Toast.makeText(MainActivity.this, "Entrez un nom", Toast.LENGTH_SHORT).show();
+                } else if (password.equals("")) {
+                    Toast.makeText(MainActivity.this, "Entrez un mot de passe", Toast.LENGTH_SHORT).show();
+
+                } else if ((dbFront.validateLogin(username, password) != null)) {//Vérification du mot de pass
 
                     LoginObject utilisateur = dbFront.validateLogin(username, password);
-                    /*Intent i = new Intent(MainActivity.this, ListeLigue.class);
+                    Intent j = new Intent(MainActivity.this, ListeLigue.class);
 
-                    i.putExtra("LOGIN", utilisateur.getLoginId());
+                    j.putExtra("LOGIN", utilisateur.getLoginId());
 
-                    startActivity(i);
-*/
-                } else {//Échec a la vérification
+                    startActivity(j);
+
+                }
+                else  {//Échec a la vérification
                     Toast.makeText(MainActivity.this, "Erreur dans le nom ou mot de passe",
                             Toast.LENGTH_SHORT).show();
+
                 }
+
             }
         });
         btnDialogCancel.setOnClickListener(new View.OnClickListener() {
