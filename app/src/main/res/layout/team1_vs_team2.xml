@@ -20,10 +20,45 @@
 
         <Button
             android:id="@+id/btnBut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Buts" />
+            android:text="But"
+            android:textColor="#EBEBEB"
+            android:textSize="15sp"
+            android:layout_width="90dp"
+            android:layout_height="60dp"
+            android:background="@drawable/boutton_stats"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            />
 
+        <Button
+            android:id="@+id/btnPasse"
+            android:text="Passe"
+            android:textColor="#EBEBEB"
+            android:textSize="15sp"
+            android:layout_width="90dp"
+            android:layout_height="60dp"
+            android:background="@drawable/boutton_stats"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            />
+
+        <Button
+            android:id="@+id/btnPenalite"
+            android:text="Penalité"
+            android:textColor="#EBEBEB"
+            android:textSize="15sp"
+            android:layout_width="90dp"
+            android:layout_height="60dp"
+            android:background="@drawable/boutton_stats"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            />
     </LinearLayout>
 
     <android.support.v4.view.ViewPager

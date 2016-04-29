@@ -42,8 +42,6 @@ public void Fragment_team(){
         view =  inflater.inflate(R.layout.content_selection_joueurs, container, false);
         btnSave = (Button) view.findViewById(R.id.btnsave);
         btnSave.setOnClickListener(this);
-        btnAllNone = (Button) view.findViewById(R.id.btncheckall);
-        btnAllNone.setOnClickListener(this);
         Bundle bndl = getArguments();
         ArrayList<Joueur> listeJoueurs = bndl.getParcelableArrayList("myList");
 
@@ -104,8 +102,8 @@ public void Fragment_team(){
 
     @Override
     public boolean onDrag(View v, DragEvent event){
-        Drawable enterShape = getResources().getDrawable(R.drawable.boutton_joueur);
-        Drawable normalShape = getResources().getDrawable(R.drawable.boutton_joueur_selectionne);
+        Drawable normalShape = getResources().getDrawable(R.drawable.boutton_joueur);
+        Drawable enterShape = getResources().getDrawable(R.drawable.boutton_joueur_selectionne);
         int action = event.getAction();
         switch (event.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED:
