@@ -27,12 +27,13 @@ import android.widget.Toast;
 
 import com.example.thierry.projetaec.DataBaseInterface.DataBaseFront;
 import com.example.thierry.projetaec.Fragment_team;
+import com.example.thierry.projetaec.Objets.Evenement;
 import com.example.thierry.projetaec.Objets.Joueur;
 import com.example.thierry.projetaec.R;
 
 import java.util.ArrayList;
 
-public class Team1VsTeam2 extends AppCompatActivity {
+public class Team1VsTeam2 extends AppCompatActivity implements View.OnClickListener {
 
     /**
      * Created by daniel on 16-04-15.
@@ -46,7 +47,9 @@ public class Team1VsTeam2 extends AppCompatActivity {
     private Button btnBut;
     private ArrayList<Button> btn = new ArrayList<>();
 
-    private final int [] btnList = {R.id.btnBut, R.id.btnPasse, R.id.btnPenalite, R.id.btnSave2};
+    private static int [] eventStore = new int[3];
+    private static final int [] btnList = {R.id.btnBut, R.id.btnPasse, R.id.btnPenalite, R.id.btnSave2};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +57,10 @@ public class Team1VsTeam2 extends AppCompatActivity {
         dbFront = new DataBaseFront(this);//CONNECTION
         setListEquipeFromDb(getIdEquipe());
 
-
         btnBut = (Button) findViewById(R.id.btnBut);
         for (int j = 0; j < (btnList.length); j++) {
             btn.add((Button) findViewById(btnList[j]));
-            btn.get(j).setOnClickListener();
+            btn.get(j).setOnClickListener(this);
             btn.get(j).setOnDragListener();
         }
         System.out.print("Team1VsTeam2 btnBut = "+ btnBut + "\n\n");
@@ -92,12 +94,22 @@ public class Team1VsTeam2 extends AppCompatActivity {
 
     static int btnClick = 0;
     public static void addClick() {
-        if(++btnClick == 2){
-            btnSave2.setVisible();
+        if(++btnClick == 2)
+            btn.get(3).setVisible();
+    }
+
+    public static void setEventAction(Joueur joueur, View v){
+        int idx=0;
+        for(idx =0; idx<3; idx++){
+            if(btnList[idx] == v.getId())
+                break;
+        }
+        if(idx<3){
+            eventStore[idx] = joueur.getIdJoueur();
         }
 
-
     }
+
     private final class MyTouchListener implements View.OnTouchListener {
         public boolean onTouch(View v, MotionEvent event) {
              if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -160,6 +172,11 @@ public class Team1VsTeam2 extends AppCompatActivity {
     //Charger les joueurs de chaque equipe
     public void onClick(View view) {
 
+        if(view.getId() == R.id.btnSave2){
+            Evenement e = new Evenement(eventStore[0], eventStore[1], -1, eventStore[2], -1);
+            for(int i=0; i< eventStore.length; i++)
+                eventStore[i] =-1;
+        }
         Snackbar.make(view, "dans le team with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
