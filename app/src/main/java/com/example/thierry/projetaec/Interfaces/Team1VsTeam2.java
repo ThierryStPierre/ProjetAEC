@@ -56,10 +56,9 @@ public class Team1VsTeam2 extends AppCompatActivity {
 
 
         btnBut = (Button) findViewById(R.id.btnBut);
-        for (int j = 0; j < (btnList.length); j++) {
+        for (int j = 0; j < (btnList.length - 1); j++) {
             btn.add((Button) findViewById(btnList[j]));
-            btn.get(j).setOnClickListener();
-            btn.get(j).setOnDragListener();
+            btn.get(j).setOnTouchListener(new MyTouchListener());
         }
         System.out.print("Team1VsTeam2 btnBut = "+ btnBut + "\n\n");
         System.out.flush();
@@ -91,9 +90,14 @@ public class Team1VsTeam2 extends AppCompatActivity {
     }
 
     static int btnClick = 0;
+    static Button btnSave;
+
     public static void addClick() {
+       // btnSave = (Button) findViewById(R.id.btnBut);
         if(++btnClick == 2){
-            btnSave2.setVisible();
+           // Toast.makeText(Team1VsTeam2.this, "", Toast.LENGTH_SHORT).show();
+           // btnSave.setVisibility(View.VISIBLE);
+
         }
 
 
