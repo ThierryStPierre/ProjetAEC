@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.thierry.projetaec.Interfaces.Team1VsTeam2;
 import com.example.thierry.projetaec.Objets.Joueur;
 
 import java.util.ArrayList;
@@ -59,7 +60,6 @@ public void Fragment_team(){
         return view;
     }
 
-
     @Override
     public void onClick(View v) {
 
@@ -68,7 +68,7 @@ public void Fragment_team(){
 
             for (int j = 0; j < howManyPlayer; j ++) {
                 if (btn.get(j).isChecked()) {
-
+                    Team1VsTeam2.addClick();
                 }
                 else{
                     btn.get(j).setVisibility(View.GONE);

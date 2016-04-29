@@ -44,7 +44,7 @@ public class Team1VsTeam2 extends AppCompatActivity {
     private ArrayList<Joueur> listJoueurs2;
     private Button btnBut;
 
-
+    private final int [] btnList = {R.id.btnBut, R.id.btnPasse, R.id.btnPenalite};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +83,12 @@ public class Team1VsTeam2 extends AppCompatActivity {
 
     }
 
+    static int btnClick = 0;
+    public static void addClick() {
+        if(++btnClick == 2)
+            btnSave2.setVisible();
+
+    }
     private final class MyTouchListener implements View.OnTouchListener {
         public boolean onTouch(View v, MotionEvent event) {
              if (event.getAction() == MotionEvent.ACTION_DOWN) {
