@@ -91,6 +91,7 @@ public class Competence implements Parcelable {
             return new Competence[0];
         }
     };
+
     private Competence(Parcel in){
         idLigue = in.readInt();
         idSousLigue = in.readInt();
